@@ -17,11 +17,10 @@
 
 unsigned char game_start = 0; // 0: game inactive, 1: game started but timer hasn't, 2: game and timer both started
 unsigned char game_buttonpressed = 0; // 0: user didn't press the button, or invalid press; 1: user pressed the button
+unsigned int game_lastscore = 0;
 
 int main(void)
-{
-	unsigned int game_lastscore;
-	
+{	
 	// no interrupts
 	cli();
 		
@@ -43,6 +42,7 @@ int main(void)
         if (game_start == 0)
 		{
 			game_buttonpressed = 0;
+			game_lastscore = 0;
 			
 			// disable PINB1 and TNCT CTC interrupt
 			TIMSK1 &= ~(1<<OCIE1A);
@@ -52,6 +52,7 @@ int main(void)
 		if (game_start == 1)
 		{
 			game_buttonpressed = 0;
+			game_lastscore = 0;
 			// set up to give a buzz to indicate game has started
 			PORTB |= (1<<PINB5); // on buzz
 			
@@ -71,9 +72,15 @@ int main(void)
 		}
 		if ((game_start == 2)&&(game_buttonpressed==1)){
 			cli();
-			game_lastscore = TCNT1/MAX_COUNT*1000;		
+			game_lastscore = TCNT1/MAX_COUNT*1000;
+			game_buttonpressed = 0; // clear button press to prevent conflict
+			//disable interrupts that are set when game_start = 1
+			TIMSK1 &= ~(1<<OCIE1A);
+			PCMSK1 &= ~(1<<PINB1);	
 			sei();
 		}
+		
+		// display lcd here
 		
     }
 }
@@ -100,4 +107,18 @@ ISR(SIG_PIN_CHANGE1)
 	
 	// re-enable interrupts to resume detecting for them
 	sei();	
+}
+
+ISR(TIMER1_COMPA_vect)
+{
+	cli();	
+	game_start = 2; // remain at state 2, indicating end of game, wait user to press RESET to make game_start = 0
+	game_buttonpressed = 0;
+	game_lastscore = 999;
+	
+	//disable interrupts that are set when game_start = 1
+	TIMSK1 &= ~(1<<OCIE1A);
+	PCMSK1 &= ~(1<<PINB1);
+		
+	sei();
 }
