@@ -39,10 +39,10 @@ int main(void)
 	DDRB |= (1<<PINB5);
 	
 	//set up PINB0 to detect if game resets (restarts), all are high (5V) initially
-	PORTB |= 0b11111111;
+
+	PORTB = 0;
 	// enable external interrupts on PCINT8-PCINT15
 	EIMSK |= (1<<PCIE1);
-	EIFR |= (1<<PCIF1);
 	PCMSK1 |= (1<<PCINT9) | (1<<PCINT10); // individual interrupt enabler for PCINT9 (PINB1) and PCINT10 (PINB2)
 	sei();
 	
@@ -65,7 +65,7 @@ int main(void)
 			game_lastscore = 0;
 			
 			// delay
-			_delay_ms(10000);
+			_delay_ms(1000);
 			
 			// set up to give a buzz to indicate game has started
 			PORTB |= (1<<PINB5); // on buzz, turn on light when game is active
@@ -92,7 +92,7 @@ int main(void)
 		}
 		
 		
-		itoa(PINB, score, 16);		
+		itoa(PINB, score, 2);		
 		LCD_puts(score);	
 		
     }
@@ -107,12 +107,12 @@ ISR(PCINT1_vect)
 	// if PB0 input is low (RESET is pressed)
 	if ((PORTBINFO & (1<<PINB1))){
 		game_start = 1;
-		//LCD_puts("PINB0 LOW");
+		LCD_puts("PINB0 HIGH");
 	}
 	
 	// if PB1 is low (user presses button after game started)
 	else if ((PORTBINFO & (1<<PINB2))){
-		//LCD_puts("PINB1 LOW");
+		LCD_puts("PINB1 HIGH");
 		// disable PINB1 button until game and timer have both started!
 		if (game_start == 2)
 			game_buttonpressed = 1;
