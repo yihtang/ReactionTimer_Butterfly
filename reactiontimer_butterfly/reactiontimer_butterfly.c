@@ -30,17 +30,16 @@ int main(void)
 	
 	LCD_Init();
 		
-	// use PINB1 and PINB0 as input to check if pressed
-	DDRB &= ~((1<< PINB0) | (1 << PINB1));
+	// use PIND1 as input
+	DDRD &= ~(1<<PIND1);
 	// use PINB5 as output (Piezo element on AVR Butterfly) to indicate game start
 	DDRB |= (1<<PINB5);
 	
 	//set up PINB0 to detect if game resets (restarts), all are low initially
-	PORTB &= ~((1<< PINB0) | (1 << PINB1));
+	PORTD &= ~(1<<PIND1);
 	// enable external interrupts on PCINT8-PCINT15
-	EIMSK |= (1<<PCIE1);
-	EIFR |= (1<<PCIF1);
-	PCMSK1 |= (1<<PCINT8) | (1<<PCINT9); // individual interrupt enabler for PCINT8 (PINB0)
+	EIMSK |= (1<<INT0);
+	EICRA &= ~((1<<ISC01) | (1<<ISC00)); // set to detect interrupt request at low level
 	sei();
 	
     while(1)
@@ -88,7 +87,7 @@ int main(void)
 }
 
 // interrupt service routine for PB0-PB7, corresponding to PCINT8-PCINT15 interrupt enabler
-ISR(PCINT1_vect)
+ISR(INT0_vect)
 {	
 	// disable future interrupts to prevent conflicts
 	cli();
