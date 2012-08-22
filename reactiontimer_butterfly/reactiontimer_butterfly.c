@@ -9,7 +9,7 @@
  */ 
 
 #define F_CPU 2000000
-#define MAX_COUNT 16810 // for 4 seconds 
+#define MAX_COUNT 9765 // for 5 seconds 
 
 #include <stdlib.h>
 #include <avr/io.h>
@@ -31,17 +31,17 @@ int main(void)
 	
 	LCD_Init();
 		
-	// use PINB1 and PINB0 as input to check if pressed
+	// use PINB1 and PINB2 as input to check if pressed
 	DDRB &= ~((1<< PINB1) | (1 << PINB2));
 	// use PINB5 as output (Piezo element on AVR Butterfly) to indicate game start
 	DDRB |= (1<<PINB5);
 	
 	//set up PINB0 to detect if game resets (restarts), all are high (5V) initially
-	PORTB = 0;
+	PORTB &= ~(1<<PINB5);
+	PORTB |= (1<<PINB1) | (1<<PINB2);
 	// enable external interrupts on PCINT8-PCINT15
 	EIMSK |= (1<<PCIE1);
-	EIFR |= (1<<PCIF1);
-	PCMSK1 |= (1<<PCINT9); // individual interrupt enabler for PCINT8 (PINB1)
+	PCMSK1 |= (1<<PCINT9) | (1<<PCINT10); // individual interrupt enabler for PCINT9 (PINB1) and PCINT10 (PINB2)
 	sei();
 	
     while(1)
@@ -54,7 +54,6 @@ int main(void)
 			
 			// disable PINB1 and TNCT CTC interrupt
 			TIMSK1 &= ~(1<<OCIE1A);
-			PCMSK1 &= ~(1<<PCINT10);
 		}			
 			
 		else if (game_start == 1)
@@ -76,14 +75,11 @@ int main(void)
 			TCCR1B &= ~((1<<WGM13) | (1<<CS11));			// set CTC mode, prescaler 1024 (Part 2 of 2)
 			TIMSK1 |= (1<<OCIE1A);
 			
-			// enable button interrupt for PCINT9 (PINB1)
-			PCMSK1 |= (1<<PCINT10);
-			
 			game_start = 2;
 		}
 		else if ((game_start == 2)&&(game_buttonpressed==1)){
 			cli();
-			game_lastscore = TCNT1/(MAX_COUNT/1000);
+			game_lastscore = TCNT1/(MAX_COUNT/5000);
 			game_buttonpressed = 0; // clear button press to prevent conflict
 			//disable interrupts that are set when game_start = 1
 			TIMSK1 &= ~(1<<OCIE1A);
@@ -100,21 +96,22 @@ int main(void)
 }
 
 // interrupt service routine for PB0-PB7, corresponding to PCINT8-PCINT15 interrupt enabler
-ISR(SIG_PIN_CHANGE1)
+ISR(PCINT1_vect)
 {	
 	// disable future interrupts to prevent conflicts
 	cli();
+	LCD_puts("int vect");
+	unsigned char PORTBINFO = PORTB;
 	
-	
-	// if PB0 input is high (RESET is pressed)
-	if ((PORTB & (1<<PINB1))){
+	// if PB0 input is low (RESET is pressed)
+	if (!(PORTBINFO & (1<<PINB1))){
 		game_start = 1;
-		//LCD_puts("PINB0 HIGH");
+		LCD_puts("PINB0 HIGH");
 	}
 	
-	// if PB1 is high (user presses button after game started)
-	else if ((PORTB & (1<<PINB2))){
-		//LCD_puts("PINB1 HIGH");
+	// if PB1 is low (user presses button after game started)
+	else if (!(PORTBINFO & (1<<PINB2))){
+		LCD_puts("PINB1 HIGH");
 		// disable PINB1 button until game and timer have both started!
 		if (game_start == 2)
 			game_buttonpressed = 1;
