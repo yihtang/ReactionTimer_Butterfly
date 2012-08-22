@@ -32,7 +32,7 @@ int main(void)
 	LCD_Init();
 		
 	// use PINB1 and PINB0 as input to check if pressed
-	DDRB &= ~(1<< PINB0) | (1 << PINB1);
+	DDRB &= ~((1<< PINB0) | (1 << PINB1));
 	// use PINB5 as output (Piezo element on AVR Butterfly) to indicate game start
 	DDRB |= (1<<PINB5);
 	
