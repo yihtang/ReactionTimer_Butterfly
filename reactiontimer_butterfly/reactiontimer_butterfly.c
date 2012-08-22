@@ -50,6 +50,7 @@ int main(void)
 		{
 			game_buttonpressed = 0;
 			game_lastscore = 0;
+			PORTB &= ~(1<<PINB5); // turn off light when game inactive
 			
 			// disable PINB1 and TNCT CTC interrupt
 			TIMSK1 &= ~(1<<OCIE1A);
@@ -65,7 +66,7 @@ int main(void)
 			_delay_ms(2000);
 			
 			// set up to give a buzz to indicate game has started
-			PORTB |= (1<<PINB5); // on buzz
+			PORTB |= (1<<PINB5); // on buzz, turn on light when game is active
 			
 			// enable timer interrupt
 			TCNT1 = 0;
@@ -78,7 +79,6 @@ int main(void)
 			// enable button interrupt for PCINT9 (PINB1)
 			PCMSK1 |= (1<<PCINT9);
 			
-			PORTB &= ~(1<<PINB5); // off buzz
 			game_start = 2;
 		}
 		if ((game_start == 2)&&(game_buttonpressed==1)){
@@ -131,7 +131,7 @@ ISR(TIMER1_COMPA_vect)
 	game_start = 2; // remain at state 2, indicating end of game, wait user to press RESET to make game_start = 0
 	game_buttonpressed = 0;
 	game_lastscore = 999;
-	PORTB |= (1<<PINB5); 
+	PORTB &= ~(1<<PINB5); // turn off light when it's done
 	
 	//disable interrupts that are set when game_start = 1
 	TIMSK1 &= ~(1<<OCIE1A);

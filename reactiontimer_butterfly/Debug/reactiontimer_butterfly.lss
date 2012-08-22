@@ -629,9 +629,9 @@ int main(void)
  36a:	80 83       	st	Z, r24
 	sei();
  36c:	78 94       	sei
-		{
 			game_buttonpressed = 0;
 			game_lastscore = 0;
+			PORTB &= ~(1<<PINB5); // turn off light when game inactive
 			
 			// disable PINB1 and TNCT CTC interrupt
 			TIMSK1 &= ~(1<<OCIE1A);
@@ -643,7 +643,7 @@ int main(void)
  376:	ef 2e       	mov	r14, r31
  378:	ff 24       	eor	r15, r15
  37a:	f0 2d       	mov	r31, r0
-			PORTB &= ~(1<<PINB5); // off buzz
+			
 			game_start = 2;
 		}
 		if ((game_start == 2)&&(game_buttonpressed==1)){
@@ -661,7 +661,7 @@ int main(void)
  38e:	9f 2e       	mov	r9, r31
  390:	f0 2d       	mov	r31, r0
 			// set up to give a buzz to indicate game has started
-			PORTB |= (1<<PINB5); // on buzz
+			PORTB |= (1<<PINB5); // on buzz, turn on light when game is active
 			
 			// enable timer interrupt
 			TCNT1 = 0;
@@ -682,11 +682,11 @@ int main(void)
  3a8:	cf 2e       	mov	r12, r31
  3aa:	dd 24       	eor	r13, r13
  3ac:	f0 2d       	mov	r31, r0
+			TIMSK1 |= (1<<OCIE1A);
 			
 			// enable button interrupt for PCINT9 (PINB1)
 			PCMSK1 |= (1<<PCINT9);
 			
-			PORTB &= ~(1<<PINB5); // off buzz
 			game_start = 2;
  3ae:	77 24       	eor	r7, r7
  3b0:	68 94       	set
@@ -707,97 +707,97 @@ int main(void)
         if (game_start == 0)
  3b8:	80 91 19 01 	lds	r24, 0x0119
  3bc:	88 23       	and	r24, r24
- 3be:	71 f4       	brne	.+28     	; 0x3dc <main+0x92>
+ 3be:	79 f4       	brne	.+30     	; 0x3de <main+0x94>
 		{
 			game_buttonpressed = 0;
  3c0:	10 92 18 01 	sts	0x0118, r1
 			game_lastscore = 0;
  3c4:	10 92 17 01 	sts	0x0117, r1
  3c8:	10 92 16 01 	sts	0x0116, r1
+			PORTB &= ~(1<<PINB5); // turn off light when game inactive
+ 3cc:	2d 98       	cbi	0x05, 5	; 5
 			
 			// disable PINB1 and TNCT CTC interrupt
 			TIMSK1 &= ~(1<<OCIE1A);
- 3cc:	d8 01       	movw	r26, r16
- 3ce:	8c 91       	ld	r24, X
- 3d0:	8d 7f       	andi	r24, 0xFD	; 253
- 3d2:	8c 93       	st	X, r24
+ 3ce:	d8 01       	movw	r26, r16
+ 3d0:	8c 91       	ld	r24, X
+ 3d2:	8d 7f       	andi	r24, 0xFD	; 253
+ 3d4:	8c 93       	st	X, r24
 			PCMSK1 &= ~(1<<PCINT9);
- 3d4:	f7 01       	movw	r30, r14
- 3d6:	80 81       	ld	r24, Z
- 3d8:	8d 7f       	andi	r24, 0xFD	; 253
- 3da:	80 83       	st	Z, r24
+ 3d6:	f7 01       	movw	r30, r14
+ 3d8:	80 81       	ld	r24, Z
+ 3da:	8d 7f       	andi	r24, 0xFD	; 253
+ 3dc:	80 83       	st	Z, r24
 		}			
 			
 		if (game_start == 1)
- 3dc:	80 91 19 01 	lds	r24, 0x0119
- 3e0:	81 30       	cpi	r24, 0x01	; 1
- 3e2:	61 f5       	brne	.+88     	; 0x43c <main+0xf2>
+ 3de:	80 91 19 01 	lds	r24, 0x0119
+ 3e2:	81 30       	cpi	r24, 0x01	; 1
+ 3e4:	59 f5       	brne	.+86     	; 0x43c <main+0xf2>
 		{
 			game_buttonpressed = 0;
- 3e4:	10 92 18 01 	sts	0x0118, r1
+ 3e6:	10 92 18 01 	sts	0x0118, r1
 			game_lastscore = 0;
- 3e8:	10 92 17 01 	sts	0x0117, r1
- 3ec:	10 92 16 01 	sts	0x0116, r1
+ 3ea:	10 92 17 01 	sts	0x0117, r1
+ 3ee:	10 92 16 01 	sts	0x0116, r1
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 3f0:	8f ef       	ldi	r24, 0xFF	; 255
- 3f2:	94 e3       	ldi	r25, 0x34	; 52
- 3f4:	ac e0       	ldi	r26, 0x0C	; 12
- 3f6:	81 50       	subi	r24, 0x01	; 1
- 3f8:	90 40       	sbci	r25, 0x00	; 0
- 3fa:	a0 40       	sbci	r26, 0x00	; 0
- 3fc:	e1 f7       	brne	.-8      	; 0x3f6 <main+0xac>
- 3fe:	00 c0       	rjmp	.+0      	; 0x400 <main+0xb6>
- 400:	00 00       	nop
+ 3f2:	8f ef       	ldi	r24, 0xFF	; 255
+ 3f4:	94 e3       	ldi	r25, 0x34	; 52
+ 3f6:	ac e0       	ldi	r26, 0x0C	; 12
+ 3f8:	81 50       	subi	r24, 0x01	; 1
+ 3fa:	90 40       	sbci	r25, 0x00	; 0
+ 3fc:	a0 40       	sbci	r26, 0x00	; 0
+ 3fe:	e1 f7       	brne	.-8      	; 0x3f8 <main+0xae>
+ 400:	00 c0       	rjmp	.+0      	; 0x402 <main+0xb8>
+ 402:	00 00       	nop
 			
 			// delay
 			_delay_ms(2000);
 			
 			// set up to give a buzz to indicate game has started
-			PORTB |= (1<<PINB5); // on buzz
- 402:	2d 9a       	sbi	0x05, 5	; 5
+			PORTB |= (1<<PINB5); // on buzz, turn on light when game is active
+ 404:	2d 9a       	sbi	0x05, 5	; 5
 			
 			// enable timer interrupt
 			TCNT1 = 0;
- 404:	d5 01       	movw	r26, r10
- 406:	11 96       	adiw	r26, 0x01	; 1
- 408:	1c 92       	st	X, r1
- 40a:	1e 92       	st	-X, r1
+ 406:	d5 01       	movw	r26, r10
+ 408:	11 96       	adiw	r26, 0x01	; 1
+ 40a:	1c 92       	st	X, r1
+ 40c:	1e 92       	st	-X, r1
 			OCR1A = (unsigned int) MAX_COUNT;
- 40c:	f2 01       	movw	r30, r4
- 40e:	91 82       	std	Z+1, r9	; 0x01
- 410:	80 82       	st	Z, r8
+ 40e:	f2 01       	movw	r30, r4
+ 410:	91 82       	std	Z+1, r9	; 0x01
+ 412:	80 82       	st	Z, r8
 			TCCR1A = 0;
- 412:	d1 01       	movw	r26, r2
- 414:	1c 92       	st	X, r1
+ 414:	d1 01       	movw	r26, r2
+ 416:	1c 92       	st	X, r1
 			TCCR1B |= (1<<WGM12) | (1<<CS12) | (1<<CS10);	// set CTC mode, prescaler 1024 (Part 1 of 2)
- 416:	f6 01       	movw	r30, r12
- 418:	80 81       	ld	r24, Z
- 41a:	8d 60       	ori	r24, 0x0D	; 13
- 41c:	80 83       	st	Z, r24
+ 418:	f6 01       	movw	r30, r12
+ 41a:	80 81       	ld	r24, Z
+ 41c:	8d 60       	ori	r24, 0x0D	; 13
+ 41e:	80 83       	st	Z, r24
 			TCCR1B &= ~((1<<WGM13) | (1<<CS11));			// set CTC mode, prescaler 1024 (Part 2 of 2)
- 41e:	80 81       	ld	r24, Z
- 420:	8d 7e       	andi	r24, 0xED	; 237
- 422:	80 83       	st	Z, r24
+ 420:	80 81       	ld	r24, Z
+ 422:	8d 7e       	andi	r24, 0xED	; 237
+ 424:	80 83       	st	Z, r24
 			TIMSK1 |= (1<<OCIE1A);
- 424:	d8 01       	movw	r26, r16
- 426:	8c 91       	ld	r24, X
- 428:	82 60       	ori	r24, 0x02	; 2
- 42a:	8c 93       	st	X, r24
+ 426:	d8 01       	movw	r26, r16
+ 428:	8c 91       	ld	r24, X
+ 42a:	82 60       	ori	r24, 0x02	; 2
+ 42c:	8c 93       	st	X, r24
 			
 			// enable button interrupt for PCINT9 (PINB1)
 			PCMSK1 |= (1<<PCINT9);
- 42c:	f7 01       	movw	r30, r14
- 42e:	80 81       	ld	r24, Z
- 430:	82 60       	ori	r24, 0x02	; 2
- 432:	80 83       	st	Z, r24
+ 42e:	f7 01       	movw	r30, r14
+ 430:	80 81       	ld	r24, Z
+ 432:	82 60       	ori	r24, 0x02	; 2
+ 434:	80 83       	st	Z, r24
 			
-			PORTB &= ~(1<<PINB5); // off buzz
- 434:	2d 98       	cbi	0x05, 5	; 5
 			game_start = 2;
  436:	70 92 19 01 	sts	0x0119, r7
  43a:	02 c0       	rjmp	.+4      	; 0x440 <main+0xf6>
@@ -969,8 +969,8 @@ ISR(TIMER1_COMPA_vect)
  536:	93 e0       	ldi	r25, 0x03	; 3
  538:	90 93 17 01 	sts	0x0117, r25
  53c:	80 93 16 01 	sts	0x0116, r24
-	PORTB |= (1<<PINB5); 
- 540:	2d 9a       	sbi	0x05, 5	; 5
+	PORTB &= ~(1<<PINB5); // turn off light when it's done
+ 540:	2d 98       	cbi	0x05, 5	; 5
 	
 	//disable interrupts that are set when game_start = 1
 	TIMSK1 &= ~(1<<OCIE1A);
