@@ -36,7 +36,22 @@ int main(void)
 	
     while(1)
     {
-        //TODO:: Please write your application code 
+        if (game_start == 0)
+		{
+			game_buttonpressed = 0;
+		}			
+			
+		if (game_start == 1)
+		{
+			game_buttonpressed = 0;
+			// set up to give a buzz to indicate game has started
+			PORTB |= (1<<PINB5); // on buzz
+			// enable timer
+			PORTB &= ~(1<<PINB5); // off buzz
+			game_start = 2;
+		}
+		if ((game_start == 2)&&(game_buttonpressed==1));
+		
     }
 }
 
