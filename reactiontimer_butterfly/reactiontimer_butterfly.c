@@ -13,8 +13,8 @@
 #include <avr/iom169p.h>
 #include <avr/interrupt.h>
 
-unsigned char game_start = 0;
-unsigned char game_buttonpressed = 0;
+unsigned char game_start = 0; // 0: game inactive, 1: game started but timer hasn't, 2: game and timer both started
+unsigned char game_buttonpressed = 0; // 0: user didn't press the button, or invalid press; 1: user pressed the button
 
 int main(void)
 {
@@ -46,6 +46,19 @@ ISR(SIG_PIN_CHANGE1)
 	// disable future interrupts to prevent conflicts
 	cli();
 	
+	// if PB0 input is high (RESET is pressed)
+	if (PORTB & (1<<PINB0)){
+		game_start = 1;
+	}
+	
+	// if PB1 is high (user presses button after game started)
+	if (PORTB & (1<<PINB1)){
+		// disable PINB1 button until game and timer have both started!
+		if (game_start == 2)
+			game_buttonpressed = 1;
+		else
+			game_buttonpressed = 0;	
+	}
 	
 	// re-enable interrupts to resume detecting for them
 	sei();	
