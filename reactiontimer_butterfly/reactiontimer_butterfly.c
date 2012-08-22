@@ -8,6 +8,8 @@
  * Clock Speed: 2MHz by default, can be set up to 8MHz
  */ 
 
+#define F_CPU 2000000
+#define MAX_COUNT ((F_CPU)/ 1024 - 1) // the value that TCNT1 that leads to a 1s delay
 
 #include <avr/io.h>
 #include <avr/iom169p.h>
@@ -31,7 +33,7 @@ int main(void)
 	// enable external interrupts on PCINT8-PCINT15
 	EIMSK |= (1<<PCIE1);
 	EIFR |= (1<<PCIF1);
-	PCMSK1 |= (1<<PCINT8); // individual interrupt enabler for PCINT8
+	PCMSK1 |= (1<<PCINT8); // individual interrupt enabler for PCINT8 (PINB0)
 	sei();
 	
     while(1)
@@ -46,7 +48,15 @@ int main(void)
 			game_buttonpressed = 0;
 			// set up to give a buzz to indicate game has started
 			PORTB |= (1<<PINB5); // on buzz
-			// enable timer
+			
+			// enable timer interrupt
+			TCNT1 = 0;
+			OCR1A = (unsigned int) MAX_COUNT;
+			TIMSK1 |= (1<<OCIE1A);
+			
+			// enable button interrupt for PCINT8 (PINB1)
+			PCMSK1 |= (1<<PINB1);
+			
 			PORTB &= ~(1<<PINB5); // off buzz
 			game_start = 2;
 		}
