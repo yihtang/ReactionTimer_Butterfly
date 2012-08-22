@@ -20,6 +20,8 @@ unsigned char game_buttonpressed = 0; // 0: user didn't press the button, or inv
 
 int main(void)
 {
+	unsigned int game_lastscore;
+	
 	// no interrupts
 	cli();
 		
@@ -67,7 +69,11 @@ int main(void)
 			PORTB &= ~(1<<PINB5); // off buzz
 			game_start = 2;
 		}
-		if ((game_start == 2)&&(game_buttonpressed==1));
+		if ((game_start == 2)&&(game_buttonpressed==1)){
+			cli();
+			game_lastscore = TCNT1/MAX_COUNT*1000;		
+			sei();
+		}
 		
     }
 }
