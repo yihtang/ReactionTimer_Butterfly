@@ -19,8 +19,7 @@
 #include "LCDdriver.h"
 #include "LCDdriver.c"
 
-unsigned char game_start = 0; // 0: game inactive, 1: game started but timer hasn't, 2: game and timer both started
-unsigned char game_buttonpressed = 0; // 0: user didn't press the button, or invalid press; 1: user pressed the button
+unsigned char game_start = 0; // 0: game inactive, 1: game started but timer hasn't, 2: game and timer both started, 3: when user presses the button
 unsigned int game_lastscore = 0;
 char score[8];
 
@@ -47,10 +46,7 @@ int main(void)
     while(1)
     {
         if (game_start == 0)
-		{
-			game_buttonpressed = 0;
-			game_lastscore = 0;
-			
+		{			
 			// disable PINB1 and TNCT CTC interrupt
 			TIMSK1 &= ~(1<<OCIE1A);
 			PORTB &= ~(1<<PINB5); // lights off when game inactive
@@ -58,7 +54,6 @@ int main(void)
 			
 		else if (game_start == 1)
 		{
-			game_buttonpressed = 0;
 			game_lastscore = 0;
 			
 			// delay
@@ -77,10 +72,10 @@ int main(void)
 			
 			game_start = 2;
 		}
-		else if ((game_start == 2)&&(game_buttonpressed==1)){
+		else if (game_start == 3){
 			cli();
 			game_lastscore = TCNT1/MAX_COUNT*5000;
-			game_buttonpressed = 0; // clear button press to prevent conflict
+			game_start = 0; // reset status to inavtive
 			//disable interrupts that are set when game_start = 1
 			TIMSK1 &= ~(1<<OCIE1A);
 			sei();
@@ -100,16 +95,14 @@ ISR(PCINT1_vect)
 	
 	// if PB0 input is high (RESET is pressed)
 	if (PORTB & (1<<PINB0)){
-		game_start = 1;
-	}
-	
-	// if PB1 is high (user presses button after game started)
-	if (PORTB & (1<<PINB1)){
-		// disable PINB1 button until game and timer have both started!
-		if (game_start == 2)
-			game_buttonpressed = 1;
-		else
-			game_buttonpressed = 0;	
+		if (game_start == 0)
+			game_start = 1;
+		else if (game_start == 1)
+			game_start = 2;
+		else if (game_start == 2)
+			game_start = 3;
+		else if (game_start == 3)
+			game_start = 0;
 	}
 	
 	// re-enable interrupts to resume detecting for them
@@ -119,9 +112,8 @@ ISR(PCINT1_vect)
 ISR(TIMER1_COMPA_vect)
 {
 	cli();	
-	game_start = 2; // remain at state 2, indicating end of game, wait user to press RESET to make game_start = 0
-	game_buttonpressed = 0;
-	game_lastscore = 999;
+	game_start = 0; // remain at state 2, indicating end of game, wait user to press RESET to make game_start = 0
+	game_lastscore = 4999;
 	
 	//disable interrupts that are set when game_start = 1
 	TIMSK1 &= ~(1<<OCIE1A);
