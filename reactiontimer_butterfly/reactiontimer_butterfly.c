@@ -15,6 +15,7 @@
 #include <avr/iom169p.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
+#include "LCDdriver.h"
 
 unsigned char game_start = 0; // 0: game inactive, 1: game started but timer hasn't, 2: game and timer both started
 unsigned char game_buttonpressed = 0; // 0: user didn't press the button, or invalid press; 1: user pressed the button
