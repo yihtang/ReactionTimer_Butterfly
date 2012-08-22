@@ -41,6 +41,10 @@ int main(void)
         if (game_start == 0)
 		{
 			game_buttonpressed = 0;
+			
+			// disable PINB1 and TNCT CTC interrupt
+			TIMSK1 &= ~(1<<OCIE1A);
+			PCMSK1 &= ~(1<<PINB1);
 		}			
 			
 		if (game_start == 1)
