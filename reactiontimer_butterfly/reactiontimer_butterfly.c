@@ -36,7 +36,7 @@ int main(void)
 	// use PINB5 as output (Piezo element on AVR Butterfly) to indicate game start
 	DDRB |= (1<<PINB5);
 	
-	//set up PINB0 to detect if game resets (restarts), all are low initially
+	//set up PINB0 to detect if game resets (restarts), all are high (5V) initially
 	PORTB &= ~((1<< PINB0) | (1 << PINB1));
 	// enable external interrupts on PCINT8-PCINT15
 	EIMSK |= (1<<PCIE1);

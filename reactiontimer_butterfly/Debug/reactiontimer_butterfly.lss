@@ -611,7 +611,7 @@ int main(void)
 	DDRB |= (1<<PINB5);
  356:	25 9a       	sbi	0x04, 5	; 4
 	
-	//set up PINB0 to detect if game resets (restarts), all are low initially
+	//set up PINB0 to detect if game resets (restarts), all are high (5V) initially
 	PORTB &= ~((1<< PINB0) | (1 << PINB1));
  358:	85 b1       	in	r24, 0x05	; 5
  35a:	8c 7f       	andi	r24, 0xFC	; 252
