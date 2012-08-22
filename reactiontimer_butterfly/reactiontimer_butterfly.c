@@ -9,7 +9,7 @@
  */ 
 
 #define F_CPU 2000000
-#define MAX_COUNT ((F_CPU)/ 1024 - 1) // the value that TCNT1 that leads to a 1s delay
+#define MAX_COUNT 3905 // for 2 seconds 
 
 #include <stdlib.h>
 #include <avr/io.h>
@@ -22,7 +22,7 @@
 unsigned char game_start = 0; // 0: game inactive, 1: game started but timer hasn't, 2: game and timer both started
 unsigned char game_buttonpressed = 0; // 0: user didn't press the button, or invalid press; 1: user pressed the button
 unsigned int game_lastscore = 0;
-char score[3];
+char score[8];
 
 int main(void)
 {	
@@ -53,7 +53,7 @@ int main(void)
 			
 			// disable PINB1 and TNCT CTC interrupt
 			TIMSK1 &= ~(1<<OCIE1A);
-			PCMSK1 &= ~(1<<PINB1);
+			PCMSK1 &= ~(1<<PCINT9);
 		}			
 			
 		if (game_start == 1)
@@ -75,8 +75,8 @@ int main(void)
 			TCCR1B &= ~((1<<WGM13) | (1<<CS11));			// set CTC mode, prescaler 1024 (Part 2 of 2)
 			TIMSK1 |= (1<<OCIE1A);
 			
-			// enable button interrupt for PCINT8 (PINB1)
-			PCMSK1 |= (1<<PINB1);
+			// enable button interrupt for PCINT9 (PINB1)
+			PCMSK1 |= (1<<PCINT9);
 			
 			PORTB &= ~(1<<PINB5); // off buzz
 			game_start = 2;
@@ -92,7 +92,7 @@ int main(void)
 		}
 		
 		
-		itoa(game_lastscore, score, 10);		
+		itoa(PORTB, score, 10);		
 		LCD_puts(score);	
 		
     }
@@ -103,7 +103,6 @@ ISR(SIG_PIN_CHANGE1)
 {	
 	// disable future interrupts to prevent conflicts
 	cli();
-	LCD_puts("SIG CHANGE");
 	
 	
 	// if PB0 input is high (RESET is pressed)
@@ -132,10 +131,11 @@ ISR(TIMER1_COMPA_vect)
 	game_start = 2; // remain at state 2, indicating end of game, wait user to press RESET to make game_start = 0
 	game_buttonpressed = 0;
 	game_lastscore = 999;
+	PORTB |= (1<<PINB5); 
 	
 	//disable interrupts that are set when game_start = 1
 	TIMSK1 &= ~(1<<OCIE1A);
-	PCMSK1 &= ~(1<<PINB1);
+	PCMSK1 &= ~(1<<PCINT9);
 		
 	sei();
 }
