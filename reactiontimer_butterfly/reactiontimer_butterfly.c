@@ -13,6 +13,9 @@
 #include <avr/iom169p.h>
 #include <avr/interrupt.h>
 
+unsigned char game_start = 0;
+unsigned char game_buttonpressed = 0;
+
 int main(void)
 {
 	// no interrupts
@@ -22,6 +25,14 @@ int main(void)
 	DDRB &= ~(1<< PINB0) | (1 << PINB1);
 	// use PINB5 as output (Piezo element on AVR Butterfly) to indicate game start
 	DDRB |= (1<<PINB5);
+	
+	//set up PINB0 to detect if game resets (restarts), all are low initially
+	PORTB &= ~(1<< PINB0) | (1 << PINB1);
+	// enable external interrupts on PCINT8-PCINT15
+	EIMSK |= (1<<PCIE1);
+	EIFR |= (1<<PCIF1);
+	PCMSK1 |= (1<<PCINT8); // individual interrupt enabler for PCINT8
+	sei();
 	
     while(1)
     {
