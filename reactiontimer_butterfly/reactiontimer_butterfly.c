@@ -40,9 +40,10 @@ int main(void)
 	
 	//set up PINB0 to detect if game resets (restarts), all are high (5V) initially
 	PORTB &= ~(1<<PINB5);
-	PORTB |= (1<<PINB1) | (1<<PINB2);
+	PORTB |= 0xFF;
 	// enable external interrupts on PCINT8-PCINT15
 	EIMSK |= (1<<PCIE1);
+	EIFR |= (1<<PCIF1);
 	PCMSK1 |= (1<<PCINT9) | (1<<PCINT10); // individual interrupt enabler for PCINT9 (PINB1) and PCINT10 (PINB2)
 	sei();
 	
