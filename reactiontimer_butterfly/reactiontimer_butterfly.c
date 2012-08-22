@@ -106,13 +106,13 @@ ISR(PCINT1_vect)
 	unsigned char PORTBINFO = PINB;
 	
 	// if PB0 input is low (RESET is pressed)
-	if ((PORTBINFO & (1<<PINB1))){
+	if (!(PORTBINFO & (1<<PINB1))){
 		game_start = 1;
 		//LCD_puts("PINB0 LOW");
 	}
 	
 	// if PB1 is low (user presses button after game started)
-	else if ((PORTBINFO & (1<<PINB2))){
+	else if (!(PORTBINFO & (1<<PINB2))){
 		//LCD_puts("PINB1 LOW");
 		// disable PINB1 button until game and timer have both started!
 		if (game_start == 2)

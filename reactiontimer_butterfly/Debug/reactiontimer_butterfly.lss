@@ -851,8 +851,8 @@ ISR(PCINT1_vect)
  484:	83 b1       	in	r24, 0x03	; 3
 	
 	// if PB0 input is low (RESET is pressed)
-	if ((PORTBINFO & (1<<PINB1))){
- 486:	81 ff       	sbrs	r24, 1
+	if (!(PORTBINFO & (1<<PINB1))){
+ 486:	81 fd       	sbrc	r24, 1
  488:	04 c0       	rjmp	.+8      	; 0x492 <__vector_3+0x1c>
 		game_start = 1;
  48a:	81 e0       	ldi	r24, 0x01	; 1
@@ -862,8 +862,8 @@ ISR(PCINT1_vect)
 	}
 	
 	// if PB1 is low (user presses button after game started)
-	else if ((PORTBINFO & (1<<PINB2))){
- 492:	82 ff       	sbrs	r24, 2
+	else if (!(PORTBINFO & (1<<PINB2))){
+ 492:	82 fd       	sbrc	r24, 2
  494:	0a c0       	rjmp	.+20     	; 0x4aa <__vector_3+0x34>
 		//LCD_puts("PINB1 LOW");
 		// disable PINB1 button until game and timer have both started!
