@@ -37,7 +37,7 @@ int main(void)
 	DDRB |= (1<<PINB5);
 	
 	//set up PINB0 to detect if game resets (restarts), all are low initially
-	PORTB &= ~(1<< PINB0) | (1 << PINB1);
+	PORTB &= ~((1<< PINB0) | (1 << PINB1));
 	// enable external interrupts on PCINT8-PCINT15
 	EIMSK |= (1<<PCIE1);
 	EIFR |= (1<<PCIF1);
@@ -92,7 +92,7 @@ int main(void)
 		}
 		
 		itoa(game_lastscore, score, 10);		
-		LCD_puts(score);	
+		LCD_puts("IDLE");	
 		
     }
 }
