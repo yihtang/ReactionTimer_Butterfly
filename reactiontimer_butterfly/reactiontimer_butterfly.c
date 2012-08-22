@@ -9,7 +9,7 @@
  */ 
 
 #define F_CPU 2000000
-#define MAX_COUNT ((F_CPU)/ 1024 - 1) // the value that TCNT1 that leads to a 1s delay
+#define MAX_COUNT 5*((F_CPU)/ 1024 - 1) // the value that TCNT1 that leads to a 1s delay
 
 #include <stdlib.h>
 #include <avr/io.h>
@@ -22,7 +22,7 @@
 unsigned char game_start = 0; // 0: game inactive, 1: game started but timer hasn't, 2: game and timer both started
 unsigned char game_buttonpressed = 0; // 0: user didn't press the button, or invalid press; 1: user pressed the button
 unsigned int game_lastscore = 0;
-char score[3];
+char score[8];
 
 int main(void)
 {	
@@ -37,11 +37,11 @@ int main(void)
 	DDRB |= (1<<PINB5);
 	
 	//set up PINB0 to detect if game resets (restarts), all are low initially
-	PORTB &= ~(1<< PINB0) | (1 << PINB1);
+	PORTB &= ~((1<< PINB0) | (1 << PINB1));
 	// enable external interrupts on PCINT8-PCINT15
 	EIMSK |= (1<<PCIE1);
 	EIFR |= (1<<PCIF1);
-	PCMSK1 |= (1<<PCINT8); // individual interrupt enabler for PCINT8 (PINB0)
+	PCMSK1 |= (1<<PCINT8) | (1<<PCINT9); // individual interrupt enabler for PCINT8 (PINB0)
 	sei();
 	
     while(1)
@@ -53,10 +53,10 @@ int main(void)
 			
 			// disable PINB1 and TNCT CTC interrupt
 			TIMSK1 &= ~(1<<OCIE1A);
-			PCMSK1 &= ~(1<<PINB1);
+			PORTB &= ~(1<<PINB5); // lights off when game inactive
 		}			
 			
-		if (game_start == 1)
+		else if (game_start == 1)
 		{
 			game_buttonpressed = 0;
 			game_lastscore = 0;
@@ -65,7 +65,7 @@ int main(void)
 			_delay_ms(2000);
 			
 			// set up to give a buzz to indicate game has started
-			PORTB |= (1<<PINB5); // on buzz
+			PORTB |= (1<<PINB5); // on buzz, keep light on when game is active
 			
 			// enable timer interrupt
 			TCNT1 = 0;
@@ -75,19 +75,14 @@ int main(void)
 			TCCR1B &= ~((1<<WGM13) | (1<<CS11));			// set CTC mode, prescaler 1024 (Part 2 of 2)
 			TIMSK1 |= (1<<OCIE1A);
 			
-			// enable button interrupt for PCINT8 (PINB1)
-			PCMSK1 |= (1<<PINB1);
-			
-			PORTB &= ~(1<<PINB5); // off buzz
 			game_start = 2;
 		}
-		if ((game_start == 2)&&(game_buttonpressed==1)){
+		else if ((game_start == 2)&&(game_buttonpressed==1)){
 			cli();
-			game_lastscore = TCNT1/MAX_COUNT*1000;
+			game_lastscore = TCNT1/MAX_COUNT*5000;
 			game_buttonpressed = 0; // clear button press to prevent conflict
 			//disable interrupts that are set when game_start = 1
 			TIMSK1 &= ~(1<<OCIE1A);
-			PCMSK1 &= ~(1<<PINB1);	
 			sei();
 		}
 		
@@ -98,7 +93,7 @@ int main(void)
 }
 
 // interrupt service routine for PB0-PB7, corresponding to PCINT8-PCINT15 interrupt enabler
-ISR(SIG_PIN_CHANGE1)
+ISR(PCINT1_vect)
 {	
 	// disable future interrupts to prevent conflicts
 	cli();
@@ -130,7 +125,6 @@ ISR(TIMER1_COMPA_vect)
 	
 	//disable interrupts that are set when game_start = 1
 	TIMSK1 &= ~(1<<OCIE1A);
-	PCMSK1 &= ~(1<<PINB1);
 		
 	sei();
 }
