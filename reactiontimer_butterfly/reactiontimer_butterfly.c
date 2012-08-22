@@ -102,14 +102,17 @@ ISR(SIG_PIN_CHANGE1)
 {	
 	// disable future interrupts to prevent conflicts
 	cli();
+	LCD_puts("SIG CHANGE");
 	
 	// if PB0 input is high (RESET is pressed)
 	if (PORTB & (1<<PINB0)){
 		game_start = 1;
+		LCD_puts("PINB0 HIGH");
 	}
 	
 	// if PB1 is high (user presses button after game started)
 	if (PORTB & (1<<PINB1)){
+		LCD_puts("PINB1 HIGH");
 		// disable PINB1 button until game and timer have both started!
 		if (game_start == 2)
 			game_buttonpressed = 1;
