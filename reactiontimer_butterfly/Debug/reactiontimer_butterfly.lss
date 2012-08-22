@@ -1,0 +1,462 @@
+
+reactiontimer_butterfly.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000270  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .bss          00000004  00800100  00800100  000002e4  2**0
+                  ALLOC
+  2 .stab         000006cc  00000000  00000000  000002e4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  3 .stabstr      00000085  00000000  00000000  000009b0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_aranges 000000a0  00000000  00000000  00000a38  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000523  00000000  00000000  00000ad8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 0000014b  00000000  00000000  00000ffb  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   0000041a  00000000  00000000  00001146  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000074  00000000  00000000  00001560  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    0000016b  00000000  00000000  000015d4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000000e7  00000000  00000000  0000173f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2e 00 	jmp	0x5c	; 0x5c <__ctors_end>
+   4:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
+   8:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
+   c:	0c 94 da 00 	jmp	0x1b4	; 0x1b4 <__vector_3>
+  10:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
+  14:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
+  18:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
+  1c:	0c 94 f9 00 	jmp	0x1f2	; 0x1f2 <__vector_7>
+  20:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
+  24:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
+  28:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
+  2c:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
+  30:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
+  34:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
+  38:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
+  3c:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
+  40:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
+  44:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
+  48:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
+  4c:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
+  50:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
+  54:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
+  58:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
+
+0000005c <__ctors_end>:
+  5c:	11 24       	eor	r1, r1
+  5e:	1f be       	out	0x3f, r1	; 63
+  60:	cf ef       	ldi	r28, 0xFF	; 255
+  62:	d4 e0       	ldi	r29, 0x04	; 4
+  64:	de bf       	out	0x3e, r29	; 62
+  66:	cd bf       	out	0x3d, r28	; 61
+
+00000068 <__do_copy_data>:
+  68:	11 e0       	ldi	r17, 0x01	; 1
+  6a:	a0 e0       	ldi	r26, 0x00	; 0
+  6c:	b1 e0       	ldi	r27, 0x01	; 1
+  6e:	e0 e7       	ldi	r30, 0x70	; 112
+  70:	f2 e0       	ldi	r31, 0x02	; 2
+  72:	02 c0       	rjmp	.+4      	; 0x78 <__do_copy_data+0x10>
+  74:	05 90       	lpm	r0, Z+
+  76:	0d 92       	st	X+, r0
+  78:	a0 30       	cpi	r26, 0x00	; 0
+  7a:	b1 07       	cpc	r27, r17
+  7c:	d9 f7       	brne	.-10     	; 0x74 <__do_copy_data+0xc>
+
+0000007e <__do_clear_bss>:
+  7e:	11 e0       	ldi	r17, 0x01	; 1
+  80:	a0 e0       	ldi	r26, 0x00	; 0
+  82:	b1 e0       	ldi	r27, 0x01	; 1
+  84:	01 c0       	rjmp	.+2      	; 0x88 <.do_clear_bss_start>
+
+00000086 <.do_clear_bss_loop>:
+  86:	1d 92       	st	X+, r1
+
+00000088 <.do_clear_bss_start>:
+  88:	a4 30       	cpi	r26, 0x04	; 4
+  8a:	b1 07       	cpc	r27, r17
+  8c:	e1 f7       	brne	.-8      	; 0x86 <.do_clear_bss_loop>
+  8e:	0e 94 4d 00 	call	0x9a	; 0x9a <main>
+  92:	0c 94 36 01 	jmp	0x26c	; 0x26c <_exit>
+
+00000096 <__bad_interrupt>:
+  96:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000009a <main>:
+unsigned int game_lastscore = 0;
+
+int main(void)
+{	
+	// no interrupts
+	cli();
+  9a:	f8 94       	cli
+		
+	// use PINB1 and PINB0 as input to check if pressed
+	DDRB &= ~(1<< PINB0) | (1 << PINB1);
+  9c:	20 98       	cbi	0x04, 0	; 4
+	// use PINB5 as output (Piezo element on AVR Butterfly) to indicate game start
+	DDRB |= (1<<PINB5);
+  9e:	25 9a       	sbi	0x04, 5	; 4
+	
+	//set up PINB0 to detect if game resets (restarts), all are low initially
+	PORTB &= ~(1<< PINB0) | (1 << PINB1);
+  a0:	28 98       	cbi	0x05, 0	; 5
+	// enable external interrupts on PCINT8-PCINT15
+	EIMSK |= (1<<PCIE1);
+  a2:	ef 9a       	sbi	0x1d, 7	; 29
+	EIFR |= (1<<PCIF1);
+  a4:	e7 9a       	sbi	0x1c, 7	; 28
+	PCMSK1 |= (1<<PCINT8); // individual interrupt enabler for PCINT8 (PINB0)
+  a6:	ec e6       	ldi	r30, 0x6C	; 108
+  a8:	f0 e0       	ldi	r31, 0x00	; 0
+  aa:	80 81       	ld	r24, Z
+  ac:	81 60       	ori	r24, 0x01	; 1
+  ae:	80 83       	st	Z, r24
+	sei();
+  b0:	78 94       	sei
+		{
+			game_buttonpressed = 0;
+			game_lastscore = 0;
+			
+			// disable PINB1 and TNCT CTC interrupt
+			TIMSK1 &= ~(1<<OCIE1A);
+  b2:	ef e6       	ldi	r30, 0x6F	; 111
+  b4:	f0 e0       	ldi	r31, 0x00	; 0
+			PCMSK1 &= ~(1<<PINB1);
+  b6:	cc e6       	ldi	r28, 0x6C	; 108
+  b8:	d0 e0       	ldi	r29, 0x00	; 0
+			PORTB &= ~(1<<PINB5); // off buzz
+			game_start = 2;
+		}
+		if ((game_start == 2)&&(game_buttonpressed==1)){
+			cli();
+			game_lastscore = TCNT1/MAX_COUNT*1000;
+  ba:	0f 2e       	mov	r0, r31
+  bc:	f4 e8       	ldi	r31, 0x84	; 132
+  be:	ef 2e       	mov	r14, r31
+  c0:	ff 24       	eor	r15, r15
+  c2:	f0 2d       	mov	r31, r0
+  c4:	00 ea       	ldi	r16, 0xA0	; 160
+  c6:	17 e0       	ldi	r17, 0x07	; 7
+  c8:	0f 2e       	mov	r0, r31
+  ca:	f8 ee       	ldi	r31, 0xE8	; 232
+  cc:	8f 2e       	mov	r8, r31
+  ce:	f3 e0       	ldi	r31, 0x03	; 3
+  d0:	9f 2e       	mov	r9, r31
+  d2:	f0 2d       	mov	r31, r0
+			// set up to give a buzz to indicate game has started
+			PORTB |= (1<<PINB5); // on buzz
+			
+			// enable timer interrupt
+			TCNT1 = 0;
+			OCR1A = (unsigned int) MAX_COUNT;
+  d4:	0f 2e       	mov	r0, r31
+  d6:	f8 e8       	ldi	r31, 0x88	; 136
+  d8:	cf 2e       	mov	r12, r31
+  da:	dd 24       	eor	r13, r13
+  dc:	f0 2d       	mov	r31, r0
+			TCCR1A = 0;
+  de:	aa 24       	eor	r10, r10
+  e0:	bb 24       	eor	r11, r11
+  e2:	68 94       	set
+  e4:	a7 f8       	bld	r10, 7
+			TCCR1B |= (1<<WGM12) | (1<<CS12) | (1<<CS10);	// set CTC mode, prescaler 1024 (Part 1 of 2)
+  e6:	21 e8       	ldi	r18, 0x81	; 129
+  e8:	30 e0       	ldi	r19, 0x00	; 0
+			
+			// enable button interrupt for PCINT8 (PINB1)
+			PCMSK1 |= (1<<PINB1);
+			
+			PORTB &= ~(1<<PINB5); // off buzz
+			game_start = 2;
+  ea:	42 e0       	ldi	r20, 0x02	; 2
+	PCMSK1 |= (1<<PCINT8); // individual interrupt enabler for PCINT8 (PINB0)
+	sei();
+	
+    while(1)
+    {
+        if (game_start == 0)
+  ec:	80 91 03 01 	lds	r24, 0x0103
+  f0:	88 23       	and	r24, r24
+  f2:	61 f4       	brne	.+24     	; 0x10c <main+0x72>
+		{
+			game_buttonpressed = 0;
+  f4:	10 92 02 01 	sts	0x0102, r1
+			game_lastscore = 0;
+  f8:	10 92 01 01 	sts	0x0101, r1
+  fc:	10 92 00 01 	sts	0x0100, r1
+			
+			// disable PINB1 and TNCT CTC interrupt
+			TIMSK1 &= ~(1<<OCIE1A);
+ 100:	80 81       	ld	r24, Z
+ 102:	8d 7f       	andi	r24, 0xFD	; 253
+ 104:	80 83       	st	Z, r24
+			PCMSK1 &= ~(1<<PINB1);
+ 106:	88 81       	ld	r24, Y
+ 108:	8d 7f       	andi	r24, 0xFD	; 253
+ 10a:	88 83       	st	Y, r24
+		}			
+			
+		if (game_start == 1)
+ 10c:	80 91 03 01 	lds	r24, 0x0103
+ 110:	81 30       	cpi	r24, 0x01	; 1
+ 112:	59 f5       	brne	.+86     	; 0x16a <main+0xd0>
+		{
+			game_buttonpressed = 0;
+ 114:	10 92 02 01 	sts	0x0102, r1
+			game_lastscore = 0;
+ 118:	10 92 01 01 	sts	0x0101, r1
+ 11c:	10 92 00 01 	sts	0x0100, r1
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 120:	8f ef       	ldi	r24, 0xFF	; 255
+ 122:	94 e3       	ldi	r25, 0x34	; 52
+ 124:	ac e0       	ldi	r26, 0x0C	; 12
+ 126:	81 50       	subi	r24, 0x01	; 1
+ 128:	90 40       	sbci	r25, 0x00	; 0
+ 12a:	a0 40       	sbci	r26, 0x00	; 0
+ 12c:	e1 f7       	brne	.-8      	; 0x126 <main+0x8c>
+ 12e:	00 c0       	rjmp	.+0      	; 0x130 <main+0x96>
+ 130:	00 00       	nop
+			
+			// delay
+			_delay_ms(2000);
+			
+			// set up to give a buzz to indicate game has started
+			PORTB |= (1<<PINB5); // on buzz
+ 132:	2d 9a       	sbi	0x05, 5	; 5
+			
+			// enable timer interrupt
+			TCNT1 = 0;
+ 134:	d7 01       	movw	r26, r14
+ 136:	11 96       	adiw	r26, 0x01	; 1
+ 138:	1c 92       	st	X, r1
+ 13a:	1e 92       	st	-X, r1
+			OCR1A = (unsigned int) MAX_COUNT;
+ 13c:	d6 01       	movw	r26, r12
+ 13e:	11 96       	adiw	r26, 0x01	; 1
+ 140:	1c 93       	st	X, r17
+ 142:	0e 93       	st	-X, r16
+			TCCR1A = 0;
+ 144:	d5 01       	movw	r26, r10
+ 146:	1c 92       	st	X, r1
+			TCCR1B |= (1<<WGM12) | (1<<CS12) | (1<<CS10);	// set CTC mode, prescaler 1024 (Part 1 of 2)
+ 148:	d9 01       	movw	r26, r18
+ 14a:	8c 91       	ld	r24, X
+ 14c:	8d 60       	ori	r24, 0x0D	; 13
+ 14e:	8c 93       	st	X, r24
+			TCCR1B &= ~((1<<WGM13) | (1<<CS11));			// set CTC mode, prescaler 1024 (Part 2 of 2)
+ 150:	8c 91       	ld	r24, X
+ 152:	8d 7e       	andi	r24, 0xED	; 237
+ 154:	8c 93       	st	X, r24
+			TIMSK1 |= (1<<OCIE1A);
+ 156:	80 81       	ld	r24, Z
+ 158:	82 60       	ori	r24, 0x02	; 2
+ 15a:	80 83       	st	Z, r24
+			
+			// enable button interrupt for PCINT8 (PINB1)
+			PCMSK1 |= (1<<PINB1);
+ 15c:	88 81       	ld	r24, Y
+ 15e:	82 60       	ori	r24, 0x02	; 2
+ 160:	88 83       	st	Y, r24
+			
+			PORTB &= ~(1<<PINB5); // off buzz
+ 162:	2d 98       	cbi	0x05, 5	; 5
+			game_start = 2;
+ 164:	40 93 03 01 	sts	0x0103, r20
+ 168:	03 c0       	rjmp	.+6      	; 0x170 <main+0xd6>
+		}
+		if ((game_start == 2)&&(game_buttonpressed==1)){
+ 16a:	82 30       	cpi	r24, 0x02	; 2
+ 16c:	09 f0       	breq	.+2      	; 0x170 <main+0xd6>
+ 16e:	be cf       	rjmp	.-132    	; 0xec <main+0x52>
+ 170:	80 91 02 01 	lds	r24, 0x0102
+ 174:	81 30       	cpi	r24, 0x01	; 1
+ 176:	09 f0       	breq	.+2      	; 0x17a <main+0xe0>
+ 178:	b9 cf       	rjmp	.-142    	; 0xec <main+0x52>
+			cli();
+ 17a:	f8 94       	cli
+			game_lastscore = TCNT1/MAX_COUNT*1000;
+ 17c:	d7 01       	movw	r26, r14
+ 17e:	8d 91       	ld	r24, X+
+ 180:	9c 91       	ld	r25, X
+ 182:	11 97       	sbiw	r26, 0x01	; 1
+ 184:	b8 01       	movw	r22, r16
+ 186:	0e 94 22 01 	call	0x244	; 0x244 <__udivmodhi4>
+ 18a:	68 9d       	mul	r22, r8
+ 18c:	c0 01       	movw	r24, r0
+ 18e:	69 9d       	mul	r22, r9
+ 190:	90 0d       	add	r25, r0
+ 192:	78 9d       	mul	r23, r8
+ 194:	90 0d       	add	r25, r0
+ 196:	11 24       	eor	r1, r1
+ 198:	90 93 01 01 	sts	0x0101, r25
+ 19c:	80 93 00 01 	sts	0x0100, r24
+			game_buttonpressed = 0; // clear button press to prevent conflict
+ 1a0:	10 92 02 01 	sts	0x0102, r1
+			//disable interrupts that are set when game_start = 1
+			TIMSK1 &= ~(1<<OCIE1A);
+ 1a4:	80 81       	ld	r24, Z
+ 1a6:	8d 7f       	andi	r24, 0xFD	; 253
+ 1a8:	80 83       	st	Z, r24
+			PCMSK1 &= ~(1<<PINB1);	
+ 1aa:	88 81       	ld	r24, Y
+ 1ac:	8d 7f       	andi	r24, 0xFD	; 253
+ 1ae:	88 83       	st	Y, r24
+			sei();
+ 1b0:	78 94       	sei
+ 1b2:	9c cf       	rjmp	.-200    	; 0xec <main+0x52>
+
+000001b4 <__vector_3>:
+    }
+}
+
+// interrupt service routine for PB0-PB7, corresponding to PCINT8-PCINT15 interrupt enabler
+ISR(SIG_PIN_CHANGE1)
+{	
+ 1b4:	1f 92       	push	r1
+ 1b6:	0f 92       	push	r0
+ 1b8:	0f b6       	in	r0, 0x3f	; 63
+ 1ba:	0f 92       	push	r0
+ 1bc:	11 24       	eor	r1, r1
+ 1be:	8f 93       	push	r24
+	// disable future interrupts to prevent conflicts
+	cli();
+ 1c0:	f8 94       	cli
+	
+	// if PB0 input is high (RESET is pressed)
+	if (PORTB & (1<<PINB0)){
+ 1c2:	28 9b       	sbis	0x05, 0	; 5
+ 1c4:	03 c0       	rjmp	.+6      	; 0x1cc <__vector_3+0x18>
+		game_start = 1;
+ 1c6:	81 e0       	ldi	r24, 0x01	; 1
+ 1c8:	80 93 03 01 	sts	0x0103, r24
+	}
+	
+	// if PB1 is high (user presses button after game started)
+	if (PORTB & (1<<PINB1)){
+ 1cc:	29 9b       	sbis	0x05, 1	; 5
+ 1ce:	0a c0       	rjmp	.+20     	; 0x1e4 <__vector_3+0x30>
+		// disable PINB1 button until game and timer have both started!
+		if (game_start == 2)
+ 1d0:	80 91 03 01 	lds	r24, 0x0103
+ 1d4:	82 30       	cpi	r24, 0x02	; 2
+ 1d6:	21 f4       	brne	.+8      	; 0x1e0 <__vector_3+0x2c>
+			game_buttonpressed = 1;
+ 1d8:	81 e0       	ldi	r24, 0x01	; 1
+ 1da:	80 93 02 01 	sts	0x0102, r24
+ 1de:	02 c0       	rjmp	.+4      	; 0x1e4 <__vector_3+0x30>
+		else
+			game_buttonpressed = 0;	
+ 1e0:	10 92 02 01 	sts	0x0102, r1
+	}
+	
+	// re-enable interrupts to resume detecting for them
+	sei();	
+ 1e4:	78 94       	sei
+}
+ 1e6:	8f 91       	pop	r24
+ 1e8:	0f 90       	pop	r0
+ 1ea:	0f be       	out	0x3f, r0	; 63
+ 1ec:	0f 90       	pop	r0
+ 1ee:	1f 90       	pop	r1
+ 1f0:	18 95       	reti
+
+000001f2 <__vector_7>:
+
+ISR(TIMER1_COMPA_vect)
+{
+ 1f2:	1f 92       	push	r1
+ 1f4:	0f 92       	push	r0
+ 1f6:	0f b6       	in	r0, 0x3f	; 63
+ 1f8:	0f 92       	push	r0
+ 1fa:	11 24       	eor	r1, r1
+ 1fc:	8f 93       	push	r24
+ 1fe:	9f 93       	push	r25
+ 200:	ef 93       	push	r30
+ 202:	ff 93       	push	r31
+	cli();	
+ 204:	f8 94       	cli
+	game_start = 2; // remain at state 2, indicating end of game, wait user to press RESET to make game_start = 0
+ 206:	82 e0       	ldi	r24, 0x02	; 2
+ 208:	80 93 03 01 	sts	0x0103, r24
+	game_buttonpressed = 0;
+ 20c:	10 92 02 01 	sts	0x0102, r1
+	game_lastscore = 999;
+ 210:	87 ee       	ldi	r24, 0xE7	; 231
+ 212:	93 e0       	ldi	r25, 0x03	; 3
+ 214:	90 93 01 01 	sts	0x0101, r25
+ 218:	80 93 00 01 	sts	0x0100, r24
+	
+	//disable interrupts that are set when game_start = 1
+	TIMSK1 &= ~(1<<OCIE1A);
+ 21c:	ef e6       	ldi	r30, 0x6F	; 111
+ 21e:	f0 e0       	ldi	r31, 0x00	; 0
+ 220:	80 81       	ld	r24, Z
+ 222:	8d 7f       	andi	r24, 0xFD	; 253
+ 224:	80 83       	st	Z, r24
+	PCMSK1 &= ~(1<<PINB1);
+ 226:	ec e6       	ldi	r30, 0x6C	; 108
+ 228:	f0 e0       	ldi	r31, 0x00	; 0
+ 22a:	80 81       	ld	r24, Z
+ 22c:	8d 7f       	andi	r24, 0xFD	; 253
+ 22e:	80 83       	st	Z, r24
+		
+	sei();
+ 230:	78 94       	sei
+ 232:	ff 91       	pop	r31
+ 234:	ef 91       	pop	r30
+ 236:	9f 91       	pop	r25
+ 238:	8f 91       	pop	r24
+ 23a:	0f 90       	pop	r0
+ 23c:	0f be       	out	0x3f, r0	; 63
+ 23e:	0f 90       	pop	r0
+ 240:	1f 90       	pop	r1
+ 242:	18 95       	reti
+
+00000244 <__udivmodhi4>:
+ 244:	aa 1b       	sub	r26, r26
+ 246:	bb 1b       	sub	r27, r27
+ 248:	51 e1       	ldi	r21, 0x11	; 17
+ 24a:	07 c0       	rjmp	.+14     	; 0x25a <__udivmodhi4_ep>
+
+0000024c <__udivmodhi4_loop>:
+ 24c:	aa 1f       	adc	r26, r26
+ 24e:	bb 1f       	adc	r27, r27
+ 250:	a6 17       	cp	r26, r22
+ 252:	b7 07       	cpc	r27, r23
+ 254:	10 f0       	brcs	.+4      	; 0x25a <__udivmodhi4_ep>
+ 256:	a6 1b       	sub	r26, r22
+ 258:	b7 0b       	sbc	r27, r23
+
+0000025a <__udivmodhi4_ep>:
+ 25a:	88 1f       	adc	r24, r24
+ 25c:	99 1f       	adc	r25, r25
+ 25e:	5a 95       	dec	r21
+ 260:	a9 f7       	brne	.-22     	; 0x24c <__udivmodhi4_loop>
+ 262:	80 95       	com	r24
+ 264:	90 95       	com	r25
+ 266:	bc 01       	movw	r22, r24
+ 268:	cd 01       	movw	r24, r26
+ 26a:	08 95       	ret
+
+0000026c <_exit>:
+ 26c:	f8 94       	cli
+
+0000026e <__stop_program>:
+ 26e:	ff cf       	rjmp	.-2      	; 0x26e <__stop_program>
