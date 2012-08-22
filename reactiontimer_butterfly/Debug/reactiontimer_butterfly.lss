@@ -3,460 +3,1049 @@ reactiontimer_butterfly.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000270  00000000  00000000  00000074  2**1
+  0 .text         000005c4  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .bss          00000004  00800100  00800100  000002e4  2**0
+  1 .bss          00000028  00800100  00800100  00000638  2**0
                   ALLOC
-  2 .stab         000006cc  00000000  00000000  000002e4  2**2
+  2 .stab         000009c0  00000000  00000000  00000638  2**2
                   CONTENTS, READONLY, DEBUGGING
-  3 .stabstr      00000085  00000000  00000000  000009b0  2**0
+  3 .stabstr      000001b3  00000000  00000000  00000ff8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_aranges 000000a0  00000000  00000000  00000a38  2**3
+  4 .debug_aranges 000000a0  00000000  00000000  000011b0  2**3
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000523  00000000  00000000  00000ad8  2**0
+  5 .debug_info   00000823  00000000  00000000  00001250  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 0000014b  00000000  00000000  00000ffb  2**0
+  6 .debug_abbrev 00000254  00000000  00000000  00001a73  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   0000041a  00000000  00000000  00001146  2**0
+  7 .debug_line   000004c7  00000000  00000000  00001cc7  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000074  00000000  00000000  00001560  2**2
+  8 .debug_frame  0000013c  00000000  00000000  00002190  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    0000016b  00000000  00000000  000015d4  2**0
+  9 .debug_str    00000264  00000000  00000000  000022cc  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    000000e7  00000000  00000000  0000173f  2**0
+ 10 .debug_loc    000003db  00000000  00000000  00002530  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000018  00000000  00000000  0000290b  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
-   0:	0c 94 2e 00 	jmp	0x5c	; 0x5c <__ctors_end>
-   4:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
-   8:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
-   c:	0c 94 da 00 	jmp	0x1b4	; 0x1b4 <__vector_3>
-  10:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
-  14:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
-  18:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
-  1c:	0c 94 f9 00 	jmp	0x1f2	; 0x1f2 <__vector_7>
-  20:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
-  24:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
-  28:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
-  2c:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
-  30:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
-  34:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
-  38:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
-  3c:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
-  40:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
-  44:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
-  48:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
-  4c:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
-  50:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
-  54:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
-  58:	0c 94 4b 00 	jmp	0x96	; 0x96 <__bad_interrupt>
+   0:	0c 94 64 00 	jmp	0xc8	; 0xc8 <__ctors_end>
+   4:	0c 94 81 00 	jmp	0x102	; 0x102 <__bad_interrupt>
+   8:	0c 94 81 00 	jmp	0x102	; 0x102 <__bad_interrupt>
+   c:	0c 94 4c 02 	jmp	0x498	; 0x498 <__vector_3>
+  10:	0c 94 81 00 	jmp	0x102	; 0x102 <__bad_interrupt>
+  14:	0c 94 81 00 	jmp	0x102	; 0x102 <__bad_interrupt>
+  18:	0c 94 81 00 	jmp	0x102	; 0x102 <__bad_interrupt>
+  1c:	0c 94 6b 02 	jmp	0x4d6	; 0x4d6 <__vector_7>
+  20:	0c 94 81 00 	jmp	0x102	; 0x102 <__bad_interrupt>
+  24:	0c 94 81 00 	jmp	0x102	; 0x102 <__bad_interrupt>
+  28:	0c 94 81 00 	jmp	0x102	; 0x102 <__bad_interrupt>
+  2c:	0c 94 81 00 	jmp	0x102	; 0x102 <__bad_interrupt>
+  30:	0c 94 81 00 	jmp	0x102	; 0x102 <__bad_interrupt>
+  34:	0c 94 81 00 	jmp	0x102	; 0x102 <__bad_interrupt>
+  38:	0c 94 81 00 	jmp	0x102	; 0x102 <__bad_interrupt>
+  3c:	0c 94 81 00 	jmp	0x102	; 0x102 <__bad_interrupt>
+  40:	0c 94 81 00 	jmp	0x102	; 0x102 <__bad_interrupt>
+  44:	0c 94 81 00 	jmp	0x102	; 0x102 <__bad_interrupt>
+  48:	0c 94 81 00 	jmp	0x102	; 0x102 <__bad_interrupt>
+  4c:	0c 94 81 00 	jmp	0x102	; 0x102 <__bad_interrupt>
+  50:	0c 94 81 00 	jmp	0x102	; 0x102 <__bad_interrupt>
+  54:	0c 94 81 00 	jmp	0x102	; 0x102 <__bad_interrupt>
+  58:	0c 94 1a 01 	jmp	0x234	; 0x234 <__vector_22>
 
-0000005c <__ctors_end>:
-  5c:	11 24       	eor	r1, r1
-  5e:	1f be       	out	0x3f, r1	; 63
-  60:	cf ef       	ldi	r28, 0xFF	; 255
-  62:	d4 e0       	ldi	r29, 0x04	; 4
-  64:	de bf       	out	0x3e, r29	; 62
-  66:	cd bf       	out	0x3d, r28	; 61
+0000005c <LCD_SegTable>:
+  5c:	a8 ea 80 2a 00 40 00 0a 51 0a 08 40 59 55 18 01     ...*.@..Q..@YU..
+  6c:	11 1e 11 1b 50 0b 41 1b 41 1f 11 01 51 1f 51 1b     ....P.A.A...Q.Q.
+  7c:	00 00 00 00 08 80 00 1a 20 40 00 00 00 00 51 0f     ........ @....Q.
+  8c:	91 39 41 14 91 31 41 1e 41 0e 41 1d 50 0f 80 20     .9A..1A.A.A.P.. 
+  9c:	10 15 48 86 40 14 78 05 70 85 51 15 51 0e 51 95     ..H.@.x.p.Q.Q.Q.
+  ac:	51 8e 21 90 81 20 50 15 48 44 50 c5 28 c0 28 20     Q.!.. P.HDP.(.( 
+  bc:	09 50 41 14 20 80 11 11 00 00 00 10                 .PA. .......
 
-00000068 <__do_copy_data>:
-  68:	11 e0       	ldi	r17, 0x01	; 1
-  6a:	a0 e0       	ldi	r26, 0x00	; 0
-  6c:	b1 e0       	ldi	r27, 0x01	; 1
-  6e:	e0 e7       	ldi	r30, 0x70	; 112
-  70:	f2 e0       	ldi	r31, 0x02	; 2
-  72:	02 c0       	rjmp	.+4      	; 0x78 <__do_copy_data+0x10>
-  74:	05 90       	lpm	r0, Z+
-  76:	0d 92       	st	X+, r0
-  78:	a0 30       	cpi	r26, 0x00	; 0
-  7a:	b1 07       	cpc	r27, r17
-  7c:	d9 f7       	brne	.-10     	; 0x74 <__do_copy_data+0xc>
+000000c8 <__ctors_end>:
+  c8:	11 24       	eor	r1, r1
+  ca:	1f be       	out	0x3f, r1	; 63
+  cc:	cf ef       	ldi	r28, 0xFF	; 255
+  ce:	d4 e0       	ldi	r29, 0x04	; 4
+  d0:	de bf       	out	0x3e, r29	; 62
+  d2:	cd bf       	out	0x3d, r28	; 61
 
-0000007e <__do_clear_bss>:
-  7e:	11 e0       	ldi	r17, 0x01	; 1
-  80:	a0 e0       	ldi	r26, 0x00	; 0
-  82:	b1 e0       	ldi	r27, 0x01	; 1
-  84:	01 c0       	rjmp	.+2      	; 0x88 <.do_clear_bss_start>
+000000d4 <__do_copy_data>:
+  d4:	11 e0       	ldi	r17, 0x01	; 1
+  d6:	a0 e0       	ldi	r26, 0x00	; 0
+  d8:	b1 e0       	ldi	r27, 0x01	; 1
+  da:	e4 ec       	ldi	r30, 0xC4	; 196
+  dc:	f5 e0       	ldi	r31, 0x05	; 5
+  de:	02 c0       	rjmp	.+4      	; 0xe4 <__do_copy_data+0x10>
+  e0:	05 90       	lpm	r0, Z+
+  e2:	0d 92       	st	X+, r0
+  e4:	a0 30       	cpi	r26, 0x00	; 0
+  e6:	b1 07       	cpc	r27, r17
+  e8:	d9 f7       	brne	.-10     	; 0xe0 <__do_copy_data+0xc>
 
-00000086 <.do_clear_bss_loop>:
-  86:	1d 92       	st	X+, r1
+000000ea <__do_clear_bss>:
+  ea:	11 e0       	ldi	r17, 0x01	; 1
+  ec:	a0 e0       	ldi	r26, 0x00	; 0
+  ee:	b1 e0       	ldi	r27, 0x01	; 1
+  f0:	01 c0       	rjmp	.+2      	; 0xf4 <.do_clear_bss_start>
 
-00000088 <.do_clear_bss_start>:
-  88:	a4 30       	cpi	r26, 0x04	; 4
-  8a:	b1 07       	cpc	r27, r17
-  8c:	e1 f7       	brne	.-8      	; 0x86 <.do_clear_bss_loop>
-  8e:	0e 94 4d 00 	call	0x9a	; 0x9a <main>
-  92:	0c 94 36 01 	jmp	0x26c	; 0x26c <_exit>
+000000f2 <.do_clear_bss_loop>:
+  f2:	1d 92       	st	X+, r1
 
-00000096 <__bad_interrupt>:
-  96:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+000000f4 <.do_clear_bss_start>:
+  f4:	a8 32       	cpi	r26, 0x28	; 40
+  f6:	b1 07       	cpc	r27, r17
+  f8:	e1 f7       	brne	.-8      	; 0xf2 <.do_clear_bss_loop>
+  fa:	0e 94 a5 01 	call	0x34a	; 0x34a <main>
+  fe:	0c 94 e0 02 	jmp	0x5c0	; 0x5c0 <_exit>
 
-0000009a <main>:
-unsigned int game_lastscore = 0;
+00000102 <__bad_interrupt>:
+ 102:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000106 <LCD_WriteChar>:
+ ARGUMENTS: | Character to display, LCD character number to display character on
+ RETURNS:   | None
+*/
+inline void LCD_WriteChar(const uint8_t Byte, const uint8_t Digit)
+{
+   uint8_t* BuffPtr = (uint8_t*)(LCD_LCDREGS_START + (Digit >> 1));
+ 106:	a6 2f       	mov	r26, r22
+ 108:	a6 95       	lsr	r26
+ 10a:	b0 e0       	ldi	r27, 0x00	; 0
+ 10c:	a4 51       	subi	r26, 0x14	; 20
+ 10e:	bf 4f       	sbci	r27, 0xFF	; 255
+   uint16_t SegData = 0x0000;
+
+   if (Byte != LCD_SPACE_OR_INVALID_CHAR)              // Null indicates invalid character or space
+ 110:	8f 3f       	cpi	r24, 0xFF	; 255
+ 112:	59 f0       	breq	.+22     	; 0x12a <LCD_WriteChar+0x24>
+     SegData = pgm_read_word(&LCD_SegTable[Byte]);
+ 114:	e8 2f       	mov	r30, r24
+ 116:	f0 e0       	ldi	r31, 0x00	; 0
+ 118:	ee 0f       	add	r30, r30
+ 11a:	ff 1f       	adc	r31, r31
+ 11c:	e4 5a       	subi	r30, 0xA4	; 164
+ 11e:	ff 4f       	sbci	r31, 0xFF	; 255
+ 120:	25 91       	lpm	r18, Z+
+ 122:	34 91       	lpm	r19, Z
+ 124:	82 2f       	mov	r24, r18
+ 126:	93 2f       	mov	r25, r19
+ 128:	02 c0       	rjmp	.+4      	; 0x12e <LCD_WriteChar+0x28>
+ RETURNS:   | None
+*/
+inline void LCD_WriteChar(const uint8_t Byte, const uint8_t Digit)
+{
+   uint8_t* BuffPtr = (uint8_t*)(LCD_LCDREGS_START + (Digit >> 1));
+   uint16_t SegData = 0x0000;
+ 12a:	80 e0       	ldi	r24, 0x00	; 0
+ 12c:	90 e0       	ldi	r25, 0x00	; 0
+ NAME:      | LCD_WriteChar (static, inline)
+ PURPOSE:   | Routine to write a character to the correct LCD registers for display
+ ARGUMENTS: | Character to display, LCD character number to display character on
+ RETURNS:   | None
+*/
+inline void LCD_WriteChar(const uint8_t Byte, const uint8_t Digit)
+ 12e:	9d 01       	movw	r18, r26
+ 130:	2c 5e       	subi	r18, 0xEC	; 236
+ 132:	3f 4f       	sbci	r19, 0xFF	; 255
+
+   for (uint8_t BNib = 0; BNib < 4; BNib++)
+   {
+      uint8_t MaskedSegData = (SegData & 0x0000F);
+
+      if (Digit & 0x01)
+ 134:	70 e0       	ldi	r23, 0x00	; 0
+ 136:	61 70       	andi	r22, 0x01	; 1
+ 138:	70 70       	andi	r23, 0x00	; 0
+   if (Byte != LCD_SPACE_OR_INVALID_CHAR)              // Null indicates invalid character or space
+     SegData = pgm_read_word(&LCD_SegTable[Byte]);
+
+   for (uint8_t BNib = 0; BNib < 4; BNib++)
+   {
+      uint8_t MaskedSegData = (SegData & 0x0000F);
+ 13a:	48 2f       	mov	r20, r24
+ 13c:	4f 70       	andi	r20, 0x0F	; 15
+
+      if (Digit & 0x01)
+ 13e:	61 15       	cp	r22, r1
+ 140:	71 05       	cpc	r23, r1
+ 142:	39 f0       	breq	.+14     	; 0x152 <LCD_WriteChar+0x4c>
+        *BuffPtr = ((*BuffPtr & 0x0F) | (MaskedSegData << 4));
+ 144:	42 95       	swap	r20
+ 146:	40 7f       	andi	r20, 0xF0	; 240
+ 148:	5c 91       	ld	r21, X
+ 14a:	5f 70       	andi	r21, 0x0F	; 15
+ 14c:	45 2b       	or	r20, r21
+ 14e:	4c 93       	st	X, r20
+ 150:	04 c0       	rjmp	.+8      	; 0x15a <LCD_WriteChar+0x54>
+      else
+        *BuffPtr = ((*BuffPtr & 0xF0) | MaskedSegData);
+ 152:	5c 91       	ld	r21, X
+ 154:	50 7f       	andi	r21, 0xF0	; 240
+ 156:	45 2b       	or	r20, r21
+ 158:	4c 93       	st	X, r20
+
+      BuffPtr += 5;
+ 15a:	15 96       	adiw	r26, 0x05	; 5
+      SegData >>= 4;
+ 15c:	92 95       	swap	r25
+ 15e:	82 95       	swap	r24
+ 160:	8f 70       	andi	r24, 0x0F	; 15
+ 162:	89 27       	eor	r24, r25
+ 164:	9f 70       	andi	r25, 0x0F	; 15
+ 166:	89 27       	eor	r24, r25
+   uint16_t SegData = 0x0000;
+
+   if (Byte != LCD_SPACE_OR_INVALID_CHAR)              // Null indicates invalid character or space
+     SegData = pgm_read_word(&LCD_SegTable[Byte]);
+
+   for (uint8_t BNib = 0; BNib < 4; BNib++)
+ 168:	a2 17       	cp	r26, r18
+ 16a:	b3 07       	cpc	r27, r19
+ 16c:	31 f7       	brne	.-52     	; 0x13a <LCD_WriteChar+0x34>
+        *BuffPtr = ((*BuffPtr & 0xF0) | MaskedSegData);
+
+      BuffPtr += 5;
+      SegData >>= 4;
+   }
+}
+ 16e:	08 95       	ret
+
+00000170 <LCD_Init>:
+ RETURNS:   | None
+*/
+void LCD_Init(void)
+{
+   // Set the initial contrast level to maximum:
+   LCD_CONTRAST_LEVEL(0x0F);
+ 170:	8f e0       	ldi	r24, 0x0F	; 15
+ 172:	80 93 e7 00 	sts	0x00E7, r24
+
+    // Select asynchronous clock source, enable all COM pins and enable all segment pins:
+    LCDCRB  = (1<<LCDCS) | (3<<LCDMUX0) | (7<<LCDPM0);
+ 176:	87 eb       	ldi	r24, 0xB7	; 183
+ 178:	80 93 e5 00 	sts	0x00E5, r24
+
+    // Set LCD prescaler to give a framerate of 64Hz:
+    LCDFRR  = (0<<LCDPS0) | (3<<LCDCD0);
+ 17c:	83 e0       	ldi	r24, 0x03	; 3
+ 17e:	80 93 e6 00 	sts	0x00E6, r24
+
+   // Enable LCD and set low power waveform, enable start of frame interrupt:
+    LCDCRA  = (1<<LCDEN) | (1<<LCDAB) | (1<<LCDIE);
+ 182:	88 ec       	ldi	r24, 0xC8	; 200
+ 184:	80 93 e4 00 	sts	0x00E4, r24
+}
+ 188:	08 95       	ret
+
+0000018a <LCD_puts>:
+ PURPOSE:   | Displays a string from SRAM onto the Butterfly's LCD
+ ARGUMENTS: | Pointer to the start of the SRAM string
+ RETURNS:   | None
+*/
+void LCD_puts(const char *Data)
+{
+ 18a:	fc 01       	movw	r30, r24
+   uint8_t LoadB       = 0;
+ 18c:	20 e0       	ldi	r18, 0x00	; 0
+            TextBuffer[LoadB++] = (CurrByte - '*');
+            break;
+         case 0x00:                                   // Null termination of the string - ignore for now so the nulls can be appended below
+            break;
+         default:                                     // Space or invalid character, use 0xFF to display a blank
+            TextBuffer[LoadB++] = LCD_SPACE_OR_INVALID_CHAR;
+ 18e:	8a e0       	ldi	r24, 0x0A	; 10
+ 190:	91 e0       	ldi	r25, 0x01	; 1
+ 192:	5f ef       	ldi	r21, 0xFF	; 255
+   uint8_t LoadB       = 0;
+   uint8_t CurrByte;
+
+   do
+   {
+      CurrByte = *(Data++);
+ 194:	31 91       	ld	r19, Z+
+
+      switch (CurrByte)
+ 196:	3b 37       	cpi	r19, 0x7B	; 123
+ 198:	90 f4       	brcc	.+36     	; 0x1be <LCD_puts+0x34>
+ 19a:	31 36       	cpi	r19, 0x61	; 97
+ 19c:	38 f4       	brcc	.+14     	; 0x1ac <LCD_puts+0x22>
+ 19e:	33 23       	and	r19, r19
+ 1a0:	99 f0       	breq	.+38     	; 0x1c8 <LCD_puts+0x3e>
+ 1a2:	43 2f       	mov	r20, r19
+ 1a4:	4a 52       	subi	r20, 0x2A	; 42
+ 1a6:	46 33       	cpi	r20, 0x36	; 54
+ 1a8:	50 f4       	brcc	.+20     	; 0x1be <LCD_puts+0x34>
+ 1aa:	01 c0       	rjmp	.+2      	; 0x1ae <LCD_puts+0x24>
+      {
+         case 'a'...'z':
+            CurrByte &= ~(1 << 5);                   // Translate to upper-case character
+ 1ac:	3f 7d       	andi	r19, 0xDF	; 223
+         case '*'...'_':                                // Valid character, load it into the array
+            TextBuffer[LoadB++] = (CurrByte - '*');
+ 1ae:	43 2f       	mov	r20, r19
+ 1b0:	4a 52       	subi	r20, 0x2A	; 42
+ 1b2:	dc 01       	movw	r26, r24
+ 1b4:	a2 0f       	add	r26, r18
+ 1b6:	b1 1d       	adc	r27, r1
+ 1b8:	4c 93       	st	X, r20
+ 1ba:	2f 5f       	subi	r18, 0xFF	; 255
+            break;
+ 1bc:	05 c0       	rjmp	.+10     	; 0x1c8 <LCD_puts+0x3e>
+         case 0x00:                                   // Null termination of the string - ignore for now so the nulls can be appended below
+            break;
+         default:                                     // Space or invalid character, use 0xFF to display a blank
+            TextBuffer[LoadB++] = LCD_SPACE_OR_INVALID_CHAR;
+ 1be:	dc 01       	movw	r26, r24
+ 1c0:	a2 0f       	add	r26, r18
+ 1c2:	b1 1d       	adc	r27, r1
+ 1c4:	5c 93       	st	X, r21
+ 1c6:	2f 5f       	subi	r18, 0xFF	; 255
+      }
+   }
+   while (CurrByte && (LoadB < LCD_TEXTBUFFER_SIZE));
+ 1c8:	33 23       	and	r19, r19
+ 1ca:	21 f0       	breq	.+8      	; 0x1d4 <LCD_puts+0x4a>
+ 1cc:	24 31       	cpi	r18, 0x14	; 20
+ 1ce:	10 f3       	brcs	.-60     	; 0x194 <LCD_puts+0xa>
+ 1d0:	32 2f       	mov	r19, r18
+ 1d2:	01 c0       	rjmp	.+2      	; 0x1d6 <LCD_puts+0x4c>
+ 1d4:	32 2f       	mov	r19, r18
+
+   ScrollFlags = ((LoadB > LCD_DISPLAY_SIZE)? LCD_FLAG_SCROLL : 0x00);
+ 1d6:	81 e0       	ldi	r24, 0x01	; 1
+ 1d8:	37 30       	cpi	r19, 0x07	; 7
+ 1da:	08 f4       	brcc	.+2      	; 0x1de <LCD_puts+0x54>
+ 1dc:	80 e0       	ldi	r24, 0x00	; 0
+ 1de:	80 93 04 01 	sts	0x0104, r24
+ NAME:      | LCD_puts
+ PURPOSE:   | Displays a string from SRAM onto the Butterfly's LCD
+ ARGUMENTS: | Pointer to the start of the SRAM string
+ RETURNS:   | None
+*/
+void LCD_puts(const char *Data)
+ 1e2:	39 5f       	subi	r19, 0xF9	; 249
+   while (CurrByte && (LoadB < LCD_TEXTBUFFER_SIZE));
+
+   ScrollFlags = ((LoadB > LCD_DISPLAY_SIZE)? LCD_FLAG_SCROLL : 0x00);
+
+   for (uint8_t Nulls = 0; Nulls < 7; Nulls++)
+     TextBuffer[LoadB++] = LCD_SPACE_OR_INVALID_CHAR;  // Load in nulls to ensure that when scrolling, the display clears before wrapping
+ 1e4:	8a e0       	ldi	r24, 0x0A	; 10
+ 1e6:	91 e0       	ldi	r25, 0x01	; 1
+ 1e8:	4f ef       	ldi	r20, 0xFF	; 255
+ 1ea:	fc 01       	movw	r30, r24
+ 1ec:	e2 0f       	add	r30, r18
+ 1ee:	f1 1d       	adc	r31, r1
+ 1f0:	40 83       	st	Z, r20
+ 1f2:	2f 5f       	subi	r18, 0xFF	; 255
+   }
+   while (CurrByte && (LoadB < LCD_TEXTBUFFER_SIZE));
+
+   ScrollFlags = ((LoadB > LCD_DISPLAY_SIZE)? LCD_FLAG_SCROLL : 0x00);
+
+   for (uint8_t Nulls = 0; Nulls < 7; Nulls++)
+ 1f4:	23 17       	cp	r18, r19
+ 1f6:	c9 f7       	brne	.-14     	; 0x1ea <LCD_puts+0x60>
+     TextBuffer[LoadB++] = LCD_SPACE_OR_INVALID_CHAR;  // Load in nulls to ensure that when scrolling, the display clears before wrapping
+
+   TextBuffer[LoadB] = 0x00;                           // Null-terminate string
+ 1f8:	ea e0       	ldi	r30, 0x0A	; 10
+ 1fa:	f1 e0       	ldi	r31, 0x01	; 1
+ 1fc:	e3 0f       	add	r30, r19
+ 1fe:	f1 1d       	adc	r31, r1
+ 200:	10 82       	st	Z, r1
+
+   StrStart      = 0;
+ 202:	10 92 09 01 	sts	0x0109, r1
+   StrEnd        = LoadB;
+ 206:	30 93 08 01 	sts	0x0108, r19
+   ScrollCount   = LCD_SCROLLCOUNT_DEFAULT + LCD_DELAYCOUNT_DEFAULT;
+ 20a:	8a e1       	ldi	r24, 0x1A	; 26
+ 20c:	80 93 07 01 	sts	0x0107, r24
+   UpdateDisplay = true;
+ 210:	81 e0       	ldi	r24, 0x01	; 1
+ 212:	80 93 06 01 	sts	0x0106, r24
+}
+ 216:	08 95       	ret
+
+00000218 <LCD_puts_f>:
+ PURPOSE:   | Displays a string from flash onto the Butterfly's LCD
+ ARGUMENTS: | Pointer to the start of the flash string
+ RETURNS:   | None
+*/
+void LCD_puts_f(const char *FlashData)
+{
+ 218:	cf 93       	push	r28
+ 21a:	df 93       	push	r29
+ 21c:	bc 01       	movw	r22, r24
+   /* Rather than create a new buffer here (wasting RAM), the TextBuffer global
+      is re-used as a temp buffer. Once the ASCII data is loaded in to TextBuffer,
+      LCD_puts is called with it to post-process it into the correct format for the
+      LCD interrupt.                                                                */
+
+   strcpy_P((char*)&TextBuffer[0], FlashData);
+ 21e:	ca e0       	ldi	r28, 0x0A	; 10
+ 220:	d1 e0       	ldi	r29, 0x01	; 1
+ 222:	ce 01       	movw	r24, r28
+ 224:	0e 94 a8 02 	call	0x550	; 0x550 <strcpy_P>
+   LCD_puts((char*)&TextBuffer[0]);
+ 228:	ce 01       	movw	r24, r28
+ 22a:	0e 94 c5 00 	call	0x18a	; 0x18a <LCD_puts>
+}
+ 22e:	df 91       	pop	r29
+ 230:	cf 91       	pop	r28
+ 232:	08 95       	ret
+
+00000234 <__vector_22>:
+ PURPOSE:   | ISR to handle the display and scrolling of the current display string onto the LCD
+ ARGUMENTS: | None
+ RETURNS:   | None
+*/
+ISR(LCD_vect, ISR_NOBLOCK)
+{
+ 234:	78 94       	sei
+ 236:	1f 92       	push	r1
+ 238:	0f 92       	push	r0
+ 23a:	0f b6       	in	r0, 0x3f	; 63
+ 23c:	0f 92       	push	r0
+ 23e:	11 24       	eor	r1, r1
+ 240:	0f 93       	push	r16
+ 242:	1f 93       	push	r17
+ 244:	2f 93       	push	r18
+ 246:	3f 93       	push	r19
+ 248:	4f 93       	push	r20
+ 24a:	5f 93       	push	r21
+ 24c:	6f 93       	push	r22
+ 24e:	7f 93       	push	r23
+ 250:	8f 93       	push	r24
+ 252:	9f 93       	push	r25
+ 254:	af 93       	push	r26
+ 256:	bf 93       	push	r27
+ 258:	cf 93       	push	r28
+ 25a:	df 93       	push	r29
+ 25c:	ef 93       	push	r30
+ 25e:	ff 93       	push	r31
+   if (ScrollFlags & LCD_FLAG_SCROLL)
+ 260:	80 91 04 01 	lds	r24, 0x0104
+ 264:	80 ff       	sbrs	r24, 0
+ 266:	0e c0       	rjmp	.+28     	; 0x284 <__vector_22+0x50>
+   {
+      if (!(ScrollCount--))
+ 268:	80 91 07 01 	lds	r24, 0x0107
+ 26c:	98 2f       	mov	r25, r24
+ 26e:	91 50       	subi	r25, 0x01	; 1
+ 270:	90 93 07 01 	sts	0x0107, r25
+ 274:	88 23       	and	r24, r24
+ 276:	31 f4       	brne	.+12     	; 0x284 <__vector_22+0x50>
+      {
+         UpdateDisplay = true;
+ 278:	81 e0       	ldi	r24, 0x01	; 1
+ 27a:	80 93 06 01 	sts	0x0106, r24
+         ScrollCount   = LCD_SCROLLCOUNT_DEFAULT;
+ 27e:	86 e0       	ldi	r24, 0x06	; 6
+ 280:	80 93 07 01 	sts	0x0107, r24
+      }
+   }
+
+   if (UpdateDisplay)
+ 284:	80 91 06 01 	lds	r24, 0x0106
+ 288:	88 23       	and	r24, r24
+ 28a:	09 f4       	brne	.+2      	; 0x28e <__vector_22+0x5a>
+ 28c:	43 c0       	rjmp	.+134    	; 0x314 <__vector_22+0xe0>
+ 28e:	c0 e0       	ldi	r28, 0x00	; 0
+ 290:	d0 e0       	ldi	r29, 0x00	; 0
+         uint8_t Byte = (StrStart + Character);
+
+         if (Byte >= StrEnd)
+           Byte -= StrEnd;
+
+         LCD_WriteChar(TextBuffer[Byte], Character);
+ 292:	0a e0       	ldi	r16, 0x0A	; 10
+ 294:	11 e0       	ldi	r17, 0x01	; 1
+
+   if (UpdateDisplay)
+   {
+      for (uint8_t Character = 0; Character < LCD_DISPLAY_SIZE; Character++)
+      {
+         uint8_t Byte = (StrStart + Character);
+ 296:	80 91 09 01 	lds	r24, 0x0109
+ 29a:	8c 0f       	add	r24, r28
+
+         if (Byte >= StrEnd)
+ 29c:	90 91 08 01 	lds	r25, 0x0108
+ 2a0:	89 17       	cp	r24, r25
+ 2a2:	18 f0       	brcs	.+6      	; 0x2aa <__vector_22+0x76>
+           Byte -= StrEnd;
+ 2a4:	90 91 08 01 	lds	r25, 0x0108
+ 2a8:	89 1b       	sub	r24, r25
+
+         LCD_WriteChar(TextBuffer[Byte], Character);
+ 2aa:	f8 01       	movw	r30, r16
+ 2ac:	e8 0f       	add	r30, r24
+ 2ae:	f1 1d       	adc	r31, r1
+ 2b0:	80 81       	ld	r24, Z
+ 2b2:	90 e0       	ldi	r25, 0x00	; 0
+ 2b4:	be 01       	movw	r22, r28
+ 2b6:	0e 94 83 00 	call	0x106	; 0x106 <LCD_WriteChar>
+ 2ba:	21 96       	adiw	r28, 0x01	; 1
+      }
+   }
+
+   if (UpdateDisplay)
+   {
+      for (uint8_t Character = 0; Character < LCD_DISPLAY_SIZE; Character++)
+ 2bc:	c6 30       	cpi	r28, 0x06	; 6
+ 2be:	d1 05       	cpc	r29, r1
+ 2c0:	51 f7       	brne	.-44     	; 0x296 <__vector_22+0x62>
+           Byte -= StrEnd;
+
+         LCD_WriteChar(TextBuffer[Byte], Character);
+      }
+
+      if ((StrStart + LCD_DISPLAY_SIZE) == StrEnd)    // Done scrolling message on LCD once
+ 2c2:	20 91 09 01 	lds	r18, 0x0109
+ 2c6:	80 91 08 01 	lds	r24, 0x0108
+ 2ca:	30 e0       	ldi	r19, 0x00	; 0
+ 2cc:	2a 5f       	subi	r18, 0xFA	; 250
+ 2ce:	3f 4f       	sbci	r19, 0xFF	; 255
+ 2d0:	90 e0       	ldi	r25, 0x00	; 0
+ 2d2:	28 17       	cp	r18, r24
+ 2d4:	39 07       	cpc	r19, r25
+ 2d6:	29 f4       	brne	.+10     	; 0x2e2 <__vector_22+0xae>
+        ScrollFlags |= LCD_FLAG_SCROLL_DONE;
+ 2d8:	80 91 04 01 	lds	r24, 0x0104
+ 2dc:	82 60       	ori	r24, 0x02	; 2
+ 2de:	80 93 04 01 	sts	0x0104, r24
+
+      if (StrStart++ == StrEnd)
+ 2e2:	80 91 09 01 	lds	r24, 0x0109
+ 2e6:	90 91 08 01 	lds	r25, 0x0108
+ 2ea:	28 2f       	mov	r18, r24
+ 2ec:	2f 5f       	subi	r18, 0xFF	; 255
+ 2ee:	20 93 09 01 	sts	0x0109, r18
+ 2f2:	89 17       	cp	r24, r25
+ 2f4:	19 f4       	brne	.+6      	; 0x2fc <__vector_22+0xc8>
+        StrStart     = 1;
+ 2f6:	81 e0       	ldi	r24, 0x01	; 1
+ 2f8:	80 93 09 01 	sts	0x0109, r24
+
+       if (ShowColons)
+ 2fc:	80 91 05 01 	lds	r24, 0x0105
+ 300:	88 23       	and	r24, r24
+ 302:	21 f0       	breq	.+8      	; 0x30c <__vector_22+0xd8>
+            *((uint8_t*)(LCD_LCDREGS_START + 8)) = 0x01;
+ 304:	81 e0       	ldi	r24, 0x01	; 1
+ 306:	80 93 f4 00 	sts	0x00F4, r24
+ 30a:	02 c0       	rjmp	.+4      	; 0x310 <__vector_22+0xdc>
+   #if defined(INC_FROM_DRIVER)
+     static inline void LCD_WriteChar(const uint8_t Byte, const uint8_t Digit);
+   #endif
+
+#endif
+            *((uint8_t*)(LCD_LCDREGS_START + 8)) = 0x00;
+ 30c:	10 92 f4 00 	sts	0x00F4, r1
+
+      UpdateDisplay  = false;                         // Clear LCD management flags, LCD update is complete
+ 310:	10 92 06 01 	sts	0x0106, r1
+   }
+}
+ 314:	ff 91       	pop	r31
+ 316:	ef 91       	pop	r30
+ 318:	df 91       	pop	r29
+ 31a:	cf 91       	pop	r28
+ 31c:	bf 91       	pop	r27
+ 31e:	af 91       	pop	r26
+ 320:	9f 91       	pop	r25
+ 322:	8f 91       	pop	r24
+ 324:	7f 91       	pop	r23
+ 326:	6f 91       	pop	r22
+ 328:	5f 91       	pop	r21
+ 32a:	4f 91       	pop	r20
+ 32c:	3f 91       	pop	r19
+ 32e:	2f 91       	pop	r18
+ 330:	1f 91       	pop	r17
+ 332:	0f 91       	pop	r16
+ 334:	0f 90       	pop	r0
+ 336:	0f be       	out	0x3f, r0	; 63
+ 338:	0f 90       	pop	r0
+ 33a:	1f 90       	pop	r1
+ 33c:	18 95       	reti
+
+0000033e <LCD_ShowColons>:
+ ARGUMENTS: | Boolean - true to turn on colons
+ RETURNS:   | None
+*/
+void LCD_ShowColons(const uint8_t ColonsOn)
+{
+   ShowColons    = ColonsOn;
+ 33e:	80 93 05 01 	sts	0x0105, r24
+   UpdateDisplay = true;
+ 342:	81 e0       	ldi	r24, 0x01	; 1
+ 344:	80 93 06 01 	sts	0x0106, r24
+}
+ 348:	08 95       	ret
+
+0000034a <main>:
+char score[3];
 
 int main(void)
 {	
 	// no interrupts
 	cli();
-  9a:	f8 94       	cli
+ 34a:	f8 94       	cli
+	
+	LCD_Init();
+ 34c:	0e 94 b8 00 	call	0x170	; 0x170 <LCD_Init>
 		
 	// use PINB1 and PINB0 as input to check if pressed
 	DDRB &= ~(1<< PINB0) | (1 << PINB1);
-  9c:	20 98       	cbi	0x04, 0	; 4
+ 350:	20 98       	cbi	0x04, 0	; 4
 	// use PINB5 as output (Piezo element on AVR Butterfly) to indicate game start
 	DDRB |= (1<<PINB5);
-  9e:	25 9a       	sbi	0x04, 5	; 4
+ 352:	25 9a       	sbi	0x04, 5	; 4
 	
 	//set up PINB0 to detect if game resets (restarts), all are low initially
 	PORTB &= ~(1<< PINB0) | (1 << PINB1);
-  a0:	28 98       	cbi	0x05, 0	; 5
+ 354:	28 98       	cbi	0x05, 0	; 5
 	// enable external interrupts on PCINT8-PCINT15
 	EIMSK |= (1<<PCIE1);
-  a2:	ef 9a       	sbi	0x1d, 7	; 29
+ 356:	ef 9a       	sbi	0x1d, 7	; 29
 	EIFR |= (1<<PCIF1);
-  a4:	e7 9a       	sbi	0x1c, 7	; 28
+ 358:	e7 9a       	sbi	0x1c, 7	; 28
 	PCMSK1 |= (1<<PCINT8); // individual interrupt enabler for PCINT8 (PINB0)
-  a6:	ec e6       	ldi	r30, 0x6C	; 108
-  a8:	f0 e0       	ldi	r31, 0x00	; 0
-  aa:	80 81       	ld	r24, Z
-  ac:	81 60       	ori	r24, 0x01	; 1
-  ae:	80 83       	st	Z, r24
+ 35a:	ec e6       	ldi	r30, 0x6C	; 108
+ 35c:	f0 e0       	ldi	r31, 0x00	; 0
+ 35e:	80 81       	ld	r24, Z
+ 360:	81 60       	ori	r24, 0x01	; 1
+ 362:	80 83       	st	Z, r24
 	sei();
-  b0:	78 94       	sei
+ 364:	78 94       	sei
 		{
 			game_buttonpressed = 0;
 			game_lastscore = 0;
 			
 			// disable PINB1 and TNCT CTC interrupt
 			TIMSK1 &= ~(1<<OCIE1A);
-  b2:	ef e6       	ldi	r30, 0x6F	; 111
-  b4:	f0 e0       	ldi	r31, 0x00	; 0
+ 366:	0f e6       	ldi	r16, 0x6F	; 111
+ 368:	10 e0       	ldi	r17, 0x00	; 0
 			PCMSK1 &= ~(1<<PINB1);
-  b6:	cc e6       	ldi	r28, 0x6C	; 108
-  b8:	d0 e0       	ldi	r29, 0x00	; 0
+ 36a:	0f 2e       	mov	r0, r31
+ 36c:	fc e6       	ldi	r31, 0x6C	; 108
+ 36e:	ef 2e       	mov	r14, r31
+ 370:	ff 24       	eor	r15, r15
+ 372:	f0 2d       	mov	r31, r0
 			PORTB &= ~(1<<PINB5); // off buzz
 			game_start = 2;
 		}
 		if ((game_start == 2)&&(game_buttonpressed==1)){
 			cli();
 			game_lastscore = TCNT1/MAX_COUNT*1000;
-  ba:	0f 2e       	mov	r0, r31
-  bc:	f4 e8       	ldi	r31, 0x84	; 132
-  be:	ef 2e       	mov	r14, r31
-  c0:	ff 24       	eor	r15, r15
-  c2:	f0 2d       	mov	r31, r0
-  c4:	00 ea       	ldi	r16, 0xA0	; 160
-  c6:	17 e0       	ldi	r17, 0x07	; 7
-  c8:	0f 2e       	mov	r0, r31
-  ca:	f8 ee       	ldi	r31, 0xE8	; 232
-  cc:	8f 2e       	mov	r8, r31
-  ce:	f3 e0       	ldi	r31, 0x03	; 3
-  d0:	9f 2e       	mov	r9, r31
-  d2:	f0 2d       	mov	r31, r0
+ 374:	0f 2e       	mov	r0, r31
+ 376:	f4 e8       	ldi	r31, 0x84	; 132
+ 378:	af 2e       	mov	r10, r31
+ 37a:	bb 24       	eor	r11, r11
+ 37c:	f0 2d       	mov	r31, r0
+ 37e:	0f 2e       	mov	r0, r31
+ 380:	f0 ea       	ldi	r31, 0xA0	; 160
+ 382:	8f 2e       	mov	r8, r31
+ 384:	f7 e0       	ldi	r31, 0x07	; 7
+ 386:	9f 2e       	mov	r9, r31
+ 388:	f0 2d       	mov	r31, r0
 			// set up to give a buzz to indicate game has started
 			PORTB |= (1<<PINB5); // on buzz
 			
 			// enable timer interrupt
 			TCNT1 = 0;
 			OCR1A = (unsigned int) MAX_COUNT;
-  d4:	0f 2e       	mov	r0, r31
-  d6:	f8 e8       	ldi	r31, 0x88	; 136
-  d8:	cf 2e       	mov	r12, r31
-  da:	dd 24       	eor	r13, r13
-  dc:	f0 2d       	mov	r31, r0
+ 38a:	0f 2e       	mov	r0, r31
+ 38c:	f8 e8       	ldi	r31, 0x88	; 136
+ 38e:	4f 2e       	mov	r4, r31
+ 390:	55 24       	eor	r5, r5
+ 392:	f0 2d       	mov	r31, r0
 			TCCR1A = 0;
-  de:	aa 24       	eor	r10, r10
-  e0:	bb 24       	eor	r11, r11
-  e2:	68 94       	set
-  e4:	a7 f8       	bld	r10, 7
+ 394:	22 24       	eor	r2, r2
+ 396:	33 24       	eor	r3, r3
+ 398:	68 94       	set
+ 39a:	27 f8       	bld	r2, 7
 			TCCR1B |= (1<<WGM12) | (1<<CS12) | (1<<CS10);	// set CTC mode, prescaler 1024 (Part 1 of 2)
-  e6:	21 e8       	ldi	r18, 0x81	; 129
-  e8:	30 e0       	ldi	r19, 0x00	; 0
+ 39c:	0f 2e       	mov	r0, r31
+ 39e:	f1 e8       	ldi	r31, 0x81	; 129
+ 3a0:	cf 2e       	mov	r12, r31
+ 3a2:	dd 24       	eor	r13, r13
+ 3a4:	f0 2d       	mov	r31, r0
 			
 			// enable button interrupt for PCINT8 (PINB1)
 			PCMSK1 |= (1<<PINB1);
 			
 			PORTB &= ~(1<<PINB5); // off buzz
 			game_start = 2;
-  ea:	42 e0       	ldi	r20, 0x02	; 2
+ 3a6:	77 24       	eor	r7, r7
+ 3a8:	68 94       	set
+ 3aa:	71 f8       	bld	r7, 1
+			TIMSK1 &= ~(1<<OCIE1A);
+			PCMSK1 &= ~(1<<PINB1);	
+			sei();
+		}
+		
+		itoa(game_lastscore, score, 10);		
+ 3ac:	c5 e2       	ldi	r28, 0x25	; 37
+ 3ae:	d1 e0       	ldi	r29, 0x01	; 1
 	PCMSK1 |= (1<<PCINT8); // individual interrupt enabler for PCINT8 (PINB0)
 	sei();
 	
     while(1)
     {
         if (game_start == 0)
-  ec:	80 91 03 01 	lds	r24, 0x0103
-  f0:	88 23       	and	r24, r24
-  f2:	61 f4       	brne	.+24     	; 0x10c <main+0x72>
+ 3b0:	80 91 03 01 	lds	r24, 0x0103
+ 3b4:	88 23       	and	r24, r24
+ 3b6:	71 f4       	brne	.+28     	; 0x3d4 <main+0x8a>
 		{
 			game_buttonpressed = 0;
-  f4:	10 92 02 01 	sts	0x0102, r1
+ 3b8:	10 92 02 01 	sts	0x0102, r1
 			game_lastscore = 0;
-  f8:	10 92 01 01 	sts	0x0101, r1
-  fc:	10 92 00 01 	sts	0x0100, r1
+ 3bc:	10 92 01 01 	sts	0x0101, r1
+ 3c0:	10 92 00 01 	sts	0x0100, r1
 			
 			// disable PINB1 and TNCT CTC interrupt
 			TIMSK1 &= ~(1<<OCIE1A);
- 100:	80 81       	ld	r24, Z
- 102:	8d 7f       	andi	r24, 0xFD	; 253
- 104:	80 83       	st	Z, r24
+ 3c4:	d8 01       	movw	r26, r16
+ 3c6:	8c 91       	ld	r24, X
+ 3c8:	8d 7f       	andi	r24, 0xFD	; 253
+ 3ca:	8c 93       	st	X, r24
 			PCMSK1 &= ~(1<<PINB1);
- 106:	88 81       	ld	r24, Y
- 108:	8d 7f       	andi	r24, 0xFD	; 253
- 10a:	88 83       	st	Y, r24
+ 3cc:	f7 01       	movw	r30, r14
+ 3ce:	80 81       	ld	r24, Z
+ 3d0:	8d 7f       	andi	r24, 0xFD	; 253
+ 3d2:	80 83       	st	Z, r24
 		}			
 			
 		if (game_start == 1)
- 10c:	80 91 03 01 	lds	r24, 0x0103
- 110:	81 30       	cpi	r24, 0x01	; 1
- 112:	59 f5       	brne	.+86     	; 0x16a <main+0xd0>
+ 3d4:	80 91 03 01 	lds	r24, 0x0103
+ 3d8:	81 30       	cpi	r24, 0x01	; 1
+ 3da:	61 f5       	brne	.+88     	; 0x434 <main+0xea>
 		{
 			game_buttonpressed = 0;
- 114:	10 92 02 01 	sts	0x0102, r1
+ 3dc:	10 92 02 01 	sts	0x0102, r1
 			game_lastscore = 0;
- 118:	10 92 01 01 	sts	0x0101, r1
- 11c:	10 92 00 01 	sts	0x0100, r1
+ 3e0:	10 92 01 01 	sts	0x0101, r1
+ 3e4:	10 92 00 01 	sts	0x0100, r1
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 120:	8f ef       	ldi	r24, 0xFF	; 255
- 122:	94 e3       	ldi	r25, 0x34	; 52
- 124:	ac e0       	ldi	r26, 0x0C	; 12
- 126:	81 50       	subi	r24, 0x01	; 1
- 128:	90 40       	sbci	r25, 0x00	; 0
- 12a:	a0 40       	sbci	r26, 0x00	; 0
- 12c:	e1 f7       	brne	.-8      	; 0x126 <main+0x8c>
- 12e:	00 c0       	rjmp	.+0      	; 0x130 <main+0x96>
- 130:	00 00       	nop
+ 3e8:	8f ef       	ldi	r24, 0xFF	; 255
+ 3ea:	94 e3       	ldi	r25, 0x34	; 52
+ 3ec:	ac e0       	ldi	r26, 0x0C	; 12
+ 3ee:	81 50       	subi	r24, 0x01	; 1
+ 3f0:	90 40       	sbci	r25, 0x00	; 0
+ 3f2:	a0 40       	sbci	r26, 0x00	; 0
+ 3f4:	e1 f7       	brne	.-8      	; 0x3ee <main+0xa4>
+ 3f6:	00 c0       	rjmp	.+0      	; 0x3f8 <main+0xae>
+ 3f8:	00 00       	nop
 			
 			// delay
 			_delay_ms(2000);
 			
 			// set up to give a buzz to indicate game has started
 			PORTB |= (1<<PINB5); // on buzz
- 132:	2d 9a       	sbi	0x05, 5	; 5
+ 3fa:	2d 9a       	sbi	0x05, 5	; 5
 			
 			// enable timer interrupt
 			TCNT1 = 0;
- 134:	d7 01       	movw	r26, r14
- 136:	11 96       	adiw	r26, 0x01	; 1
- 138:	1c 92       	st	X, r1
- 13a:	1e 92       	st	-X, r1
+ 3fc:	d5 01       	movw	r26, r10
+ 3fe:	11 96       	adiw	r26, 0x01	; 1
+ 400:	1c 92       	st	X, r1
+ 402:	1e 92       	st	-X, r1
 			OCR1A = (unsigned int) MAX_COUNT;
- 13c:	d6 01       	movw	r26, r12
- 13e:	11 96       	adiw	r26, 0x01	; 1
- 140:	1c 93       	st	X, r17
- 142:	0e 93       	st	-X, r16
+ 404:	f2 01       	movw	r30, r4
+ 406:	91 82       	std	Z+1, r9	; 0x01
+ 408:	80 82       	st	Z, r8
 			TCCR1A = 0;
- 144:	d5 01       	movw	r26, r10
- 146:	1c 92       	st	X, r1
+ 40a:	d1 01       	movw	r26, r2
+ 40c:	1c 92       	st	X, r1
 			TCCR1B |= (1<<WGM12) | (1<<CS12) | (1<<CS10);	// set CTC mode, prescaler 1024 (Part 1 of 2)
- 148:	d9 01       	movw	r26, r18
- 14a:	8c 91       	ld	r24, X
- 14c:	8d 60       	ori	r24, 0x0D	; 13
- 14e:	8c 93       	st	X, r24
+ 40e:	f6 01       	movw	r30, r12
+ 410:	80 81       	ld	r24, Z
+ 412:	8d 60       	ori	r24, 0x0D	; 13
+ 414:	80 83       	st	Z, r24
 			TCCR1B &= ~((1<<WGM13) | (1<<CS11));			// set CTC mode, prescaler 1024 (Part 2 of 2)
- 150:	8c 91       	ld	r24, X
- 152:	8d 7e       	andi	r24, 0xED	; 237
- 154:	8c 93       	st	X, r24
+ 416:	80 81       	ld	r24, Z
+ 418:	8d 7e       	andi	r24, 0xED	; 237
+ 41a:	80 83       	st	Z, r24
 			TIMSK1 |= (1<<OCIE1A);
- 156:	80 81       	ld	r24, Z
- 158:	82 60       	ori	r24, 0x02	; 2
- 15a:	80 83       	st	Z, r24
+ 41c:	d8 01       	movw	r26, r16
+ 41e:	8c 91       	ld	r24, X
+ 420:	82 60       	ori	r24, 0x02	; 2
+ 422:	8c 93       	st	X, r24
 			
 			// enable button interrupt for PCINT8 (PINB1)
 			PCMSK1 |= (1<<PINB1);
- 15c:	88 81       	ld	r24, Y
- 15e:	82 60       	ori	r24, 0x02	; 2
- 160:	88 83       	st	Y, r24
+ 424:	f7 01       	movw	r30, r14
+ 426:	80 81       	ld	r24, Z
+ 428:	82 60       	ori	r24, 0x02	; 2
+ 42a:	80 83       	st	Z, r24
 			
 			PORTB &= ~(1<<PINB5); // off buzz
- 162:	2d 98       	cbi	0x05, 5	; 5
+ 42c:	2d 98       	cbi	0x05, 5	; 5
 			game_start = 2;
- 164:	40 93 03 01 	sts	0x0103, r20
- 168:	03 c0       	rjmp	.+6      	; 0x170 <main+0xd6>
+ 42e:	70 92 03 01 	sts	0x0103, r7
+ 432:	02 c0       	rjmp	.+4      	; 0x438 <main+0xee>
 		}
 		if ((game_start == 2)&&(game_buttonpressed==1)){
- 16a:	82 30       	cpi	r24, 0x02	; 2
- 16c:	09 f0       	breq	.+2      	; 0x170 <main+0xd6>
- 16e:	be cf       	rjmp	.-132    	; 0xec <main+0x52>
- 170:	80 91 02 01 	lds	r24, 0x0102
- 174:	81 30       	cpi	r24, 0x01	; 1
- 176:	09 f0       	breq	.+2      	; 0x17a <main+0xe0>
- 178:	b9 cf       	rjmp	.-142    	; 0xec <main+0x52>
+ 434:	82 30       	cpi	r24, 0x02	; 2
+ 436:	19 f5       	brne	.+70     	; 0x47e <main+0x134>
+ 438:	80 91 02 01 	lds	r24, 0x0102
+ 43c:	81 30       	cpi	r24, 0x01	; 1
+ 43e:	f9 f4       	brne	.+62     	; 0x47e <main+0x134>
 			cli();
- 17a:	f8 94       	cli
+ 440:	f8 94       	cli
 			game_lastscore = TCNT1/MAX_COUNT*1000;
- 17c:	d7 01       	movw	r26, r14
- 17e:	8d 91       	ld	r24, X+
- 180:	9c 91       	ld	r25, X
- 182:	11 97       	sbiw	r26, 0x01	; 1
- 184:	b8 01       	movw	r22, r16
- 186:	0e 94 22 01 	call	0x244	; 0x244 <__udivmodhi4>
- 18a:	68 9d       	mul	r22, r8
- 18c:	c0 01       	movw	r24, r0
- 18e:	69 9d       	mul	r22, r9
- 190:	90 0d       	add	r25, r0
- 192:	78 9d       	mul	r23, r8
- 194:	90 0d       	add	r25, r0
- 196:	11 24       	eor	r1, r1
- 198:	90 93 01 01 	sts	0x0101, r25
- 19c:	80 93 00 01 	sts	0x0100, r24
+ 442:	d5 01       	movw	r26, r10
+ 444:	8d 91       	ld	r24, X+
+ 446:	9c 91       	ld	r25, X
+ 448:	b4 01       	movw	r22, r8
+ 44a:	0e 94 94 02 	call	0x528	; 0x528 <__udivmodhi4>
+ 44e:	e8 ee       	ldi	r30, 0xE8	; 232
+ 450:	f3 e0       	ldi	r31, 0x03	; 3
+ 452:	6e 9f       	mul	r22, r30
+ 454:	c0 01       	movw	r24, r0
+ 456:	6f 9f       	mul	r22, r31
+ 458:	90 0d       	add	r25, r0
+ 45a:	7e 9f       	mul	r23, r30
+ 45c:	90 0d       	add	r25, r0
+ 45e:	11 24       	eor	r1, r1
+ 460:	90 93 01 01 	sts	0x0101, r25
+ 464:	80 93 00 01 	sts	0x0100, r24
 			game_buttonpressed = 0; // clear button press to prevent conflict
- 1a0:	10 92 02 01 	sts	0x0102, r1
+ 468:	10 92 02 01 	sts	0x0102, r1
 			//disable interrupts that are set when game_start = 1
 			TIMSK1 &= ~(1<<OCIE1A);
- 1a4:	80 81       	ld	r24, Z
- 1a6:	8d 7f       	andi	r24, 0xFD	; 253
- 1a8:	80 83       	st	Z, r24
+ 46c:	d8 01       	movw	r26, r16
+ 46e:	8c 91       	ld	r24, X
+ 470:	8d 7f       	andi	r24, 0xFD	; 253
+ 472:	8c 93       	st	X, r24
 			PCMSK1 &= ~(1<<PINB1);	
- 1aa:	88 81       	ld	r24, Y
- 1ac:	8d 7f       	andi	r24, 0xFD	; 253
- 1ae:	88 83       	st	Y, r24
+ 474:	f7 01       	movw	r30, r14
+ 476:	80 81       	ld	r24, Z
+ 478:	8d 7f       	andi	r24, 0xFD	; 253
+ 47a:	80 83       	st	Z, r24
 			sei();
- 1b0:	78 94       	sei
- 1b2:	9c cf       	rjmp	.-200    	; 0xec <main+0x52>
-
-000001b4 <__vector_3>:
+ 47c:	78 94       	sei
+		}
+		
+		itoa(game_lastscore, score, 10);		
+ 47e:	80 91 00 01 	lds	r24, 0x0100
+ 482:	90 91 01 01 	lds	r25, 0x0101
+ 486:	be 01       	movw	r22, r28
+ 488:	4a e0       	ldi	r20, 0x0A	; 10
+ 48a:	50 e0       	ldi	r21, 0x00	; 0
+ 48c:	0e 94 af 02 	call	0x55e	; 0x55e <itoa>
+		LCD_puts(score);	
+ 490:	ce 01       	movw	r24, r28
+ 492:	0e 94 c5 00 	call	0x18a	; 0x18a <LCD_puts>
+		
     }
+ 496:	8c cf       	rjmp	.-232    	; 0x3b0 <main+0x66>
+
+00000498 <__vector_3>:
 }
 
 // interrupt service routine for PB0-PB7, corresponding to PCINT8-PCINT15 interrupt enabler
 ISR(SIG_PIN_CHANGE1)
 {	
- 1b4:	1f 92       	push	r1
- 1b6:	0f 92       	push	r0
- 1b8:	0f b6       	in	r0, 0x3f	; 63
- 1ba:	0f 92       	push	r0
- 1bc:	11 24       	eor	r1, r1
- 1be:	8f 93       	push	r24
+ 498:	1f 92       	push	r1
+ 49a:	0f 92       	push	r0
+ 49c:	0f b6       	in	r0, 0x3f	; 63
+ 49e:	0f 92       	push	r0
+ 4a0:	11 24       	eor	r1, r1
+ 4a2:	8f 93       	push	r24
 	// disable future interrupts to prevent conflicts
 	cli();
- 1c0:	f8 94       	cli
+ 4a4:	f8 94       	cli
 	
 	// if PB0 input is high (RESET is pressed)
 	if (PORTB & (1<<PINB0)){
- 1c2:	28 9b       	sbis	0x05, 0	; 5
- 1c4:	03 c0       	rjmp	.+6      	; 0x1cc <__vector_3+0x18>
+ 4a6:	28 9b       	sbis	0x05, 0	; 5
+ 4a8:	03 c0       	rjmp	.+6      	; 0x4b0 <__vector_3+0x18>
 		game_start = 1;
- 1c6:	81 e0       	ldi	r24, 0x01	; 1
- 1c8:	80 93 03 01 	sts	0x0103, r24
+ 4aa:	81 e0       	ldi	r24, 0x01	; 1
+ 4ac:	80 93 03 01 	sts	0x0103, r24
 	}
 	
 	// if PB1 is high (user presses button after game started)
 	if (PORTB & (1<<PINB1)){
- 1cc:	29 9b       	sbis	0x05, 1	; 5
- 1ce:	0a c0       	rjmp	.+20     	; 0x1e4 <__vector_3+0x30>
+ 4b0:	29 9b       	sbis	0x05, 1	; 5
+ 4b2:	0a c0       	rjmp	.+20     	; 0x4c8 <__vector_3+0x30>
 		// disable PINB1 button until game and timer have both started!
 		if (game_start == 2)
- 1d0:	80 91 03 01 	lds	r24, 0x0103
- 1d4:	82 30       	cpi	r24, 0x02	; 2
- 1d6:	21 f4       	brne	.+8      	; 0x1e0 <__vector_3+0x2c>
+ 4b4:	80 91 03 01 	lds	r24, 0x0103
+ 4b8:	82 30       	cpi	r24, 0x02	; 2
+ 4ba:	21 f4       	brne	.+8      	; 0x4c4 <__vector_3+0x2c>
 			game_buttonpressed = 1;
- 1d8:	81 e0       	ldi	r24, 0x01	; 1
- 1da:	80 93 02 01 	sts	0x0102, r24
- 1de:	02 c0       	rjmp	.+4      	; 0x1e4 <__vector_3+0x30>
+ 4bc:	81 e0       	ldi	r24, 0x01	; 1
+ 4be:	80 93 02 01 	sts	0x0102, r24
+ 4c2:	02 c0       	rjmp	.+4      	; 0x4c8 <__vector_3+0x30>
 		else
 			game_buttonpressed = 0;	
- 1e0:	10 92 02 01 	sts	0x0102, r1
+ 4c4:	10 92 02 01 	sts	0x0102, r1
 	}
 	
 	// re-enable interrupts to resume detecting for them
 	sei();	
- 1e4:	78 94       	sei
+ 4c8:	78 94       	sei
 }
- 1e6:	8f 91       	pop	r24
- 1e8:	0f 90       	pop	r0
- 1ea:	0f be       	out	0x3f, r0	; 63
- 1ec:	0f 90       	pop	r0
- 1ee:	1f 90       	pop	r1
- 1f0:	18 95       	reti
+ 4ca:	8f 91       	pop	r24
+ 4cc:	0f 90       	pop	r0
+ 4ce:	0f be       	out	0x3f, r0	; 63
+ 4d0:	0f 90       	pop	r0
+ 4d2:	1f 90       	pop	r1
+ 4d4:	18 95       	reti
 
-000001f2 <__vector_7>:
+000004d6 <__vector_7>:
 
 ISR(TIMER1_COMPA_vect)
 {
- 1f2:	1f 92       	push	r1
- 1f4:	0f 92       	push	r0
- 1f6:	0f b6       	in	r0, 0x3f	; 63
- 1f8:	0f 92       	push	r0
- 1fa:	11 24       	eor	r1, r1
- 1fc:	8f 93       	push	r24
- 1fe:	9f 93       	push	r25
- 200:	ef 93       	push	r30
- 202:	ff 93       	push	r31
+ 4d6:	1f 92       	push	r1
+ 4d8:	0f 92       	push	r0
+ 4da:	0f b6       	in	r0, 0x3f	; 63
+ 4dc:	0f 92       	push	r0
+ 4de:	11 24       	eor	r1, r1
+ 4e0:	8f 93       	push	r24
+ 4e2:	9f 93       	push	r25
+ 4e4:	ef 93       	push	r30
+ 4e6:	ff 93       	push	r31
 	cli();	
- 204:	f8 94       	cli
+ 4e8:	f8 94       	cli
 	game_start = 2; // remain at state 2, indicating end of game, wait user to press RESET to make game_start = 0
- 206:	82 e0       	ldi	r24, 0x02	; 2
- 208:	80 93 03 01 	sts	0x0103, r24
+ 4ea:	82 e0       	ldi	r24, 0x02	; 2
+ 4ec:	80 93 03 01 	sts	0x0103, r24
 	game_buttonpressed = 0;
- 20c:	10 92 02 01 	sts	0x0102, r1
+ 4f0:	10 92 02 01 	sts	0x0102, r1
 	game_lastscore = 999;
- 210:	87 ee       	ldi	r24, 0xE7	; 231
- 212:	93 e0       	ldi	r25, 0x03	; 3
- 214:	90 93 01 01 	sts	0x0101, r25
- 218:	80 93 00 01 	sts	0x0100, r24
+ 4f4:	87 ee       	ldi	r24, 0xE7	; 231
+ 4f6:	93 e0       	ldi	r25, 0x03	; 3
+ 4f8:	90 93 01 01 	sts	0x0101, r25
+ 4fc:	80 93 00 01 	sts	0x0100, r24
 	
 	//disable interrupts that are set when game_start = 1
 	TIMSK1 &= ~(1<<OCIE1A);
- 21c:	ef e6       	ldi	r30, 0x6F	; 111
- 21e:	f0 e0       	ldi	r31, 0x00	; 0
- 220:	80 81       	ld	r24, Z
- 222:	8d 7f       	andi	r24, 0xFD	; 253
- 224:	80 83       	st	Z, r24
+ 500:	ef e6       	ldi	r30, 0x6F	; 111
+ 502:	f0 e0       	ldi	r31, 0x00	; 0
+ 504:	80 81       	ld	r24, Z
+ 506:	8d 7f       	andi	r24, 0xFD	; 253
+ 508:	80 83       	st	Z, r24
 	PCMSK1 &= ~(1<<PINB1);
- 226:	ec e6       	ldi	r30, 0x6C	; 108
- 228:	f0 e0       	ldi	r31, 0x00	; 0
- 22a:	80 81       	ld	r24, Z
- 22c:	8d 7f       	andi	r24, 0xFD	; 253
- 22e:	80 83       	st	Z, r24
+ 50a:	ec e6       	ldi	r30, 0x6C	; 108
+ 50c:	f0 e0       	ldi	r31, 0x00	; 0
+ 50e:	80 81       	ld	r24, Z
+ 510:	8d 7f       	andi	r24, 0xFD	; 253
+ 512:	80 83       	st	Z, r24
 		
 	sei();
- 230:	78 94       	sei
- 232:	ff 91       	pop	r31
- 234:	ef 91       	pop	r30
- 236:	9f 91       	pop	r25
- 238:	8f 91       	pop	r24
- 23a:	0f 90       	pop	r0
- 23c:	0f be       	out	0x3f, r0	; 63
- 23e:	0f 90       	pop	r0
- 240:	1f 90       	pop	r1
- 242:	18 95       	reti
+ 514:	78 94       	sei
+ 516:	ff 91       	pop	r31
+ 518:	ef 91       	pop	r30
+ 51a:	9f 91       	pop	r25
+ 51c:	8f 91       	pop	r24
+ 51e:	0f 90       	pop	r0
+ 520:	0f be       	out	0x3f, r0	; 63
+ 522:	0f 90       	pop	r0
+ 524:	1f 90       	pop	r1
+ 526:	18 95       	reti
 
-00000244 <__udivmodhi4>:
- 244:	aa 1b       	sub	r26, r26
- 246:	bb 1b       	sub	r27, r27
- 248:	51 e1       	ldi	r21, 0x11	; 17
- 24a:	07 c0       	rjmp	.+14     	; 0x25a <__udivmodhi4_ep>
+00000528 <__udivmodhi4>:
+ 528:	aa 1b       	sub	r26, r26
+ 52a:	bb 1b       	sub	r27, r27
+ 52c:	51 e1       	ldi	r21, 0x11	; 17
+ 52e:	07 c0       	rjmp	.+14     	; 0x53e <__udivmodhi4_ep>
 
-0000024c <__udivmodhi4_loop>:
- 24c:	aa 1f       	adc	r26, r26
- 24e:	bb 1f       	adc	r27, r27
- 250:	a6 17       	cp	r26, r22
- 252:	b7 07       	cpc	r27, r23
- 254:	10 f0       	brcs	.+4      	; 0x25a <__udivmodhi4_ep>
- 256:	a6 1b       	sub	r26, r22
- 258:	b7 0b       	sbc	r27, r23
+00000530 <__udivmodhi4_loop>:
+ 530:	aa 1f       	adc	r26, r26
+ 532:	bb 1f       	adc	r27, r27
+ 534:	a6 17       	cp	r26, r22
+ 536:	b7 07       	cpc	r27, r23
+ 538:	10 f0       	brcs	.+4      	; 0x53e <__udivmodhi4_ep>
+ 53a:	a6 1b       	sub	r26, r22
+ 53c:	b7 0b       	sbc	r27, r23
 
-0000025a <__udivmodhi4_ep>:
- 25a:	88 1f       	adc	r24, r24
- 25c:	99 1f       	adc	r25, r25
- 25e:	5a 95       	dec	r21
- 260:	a9 f7       	brne	.-22     	; 0x24c <__udivmodhi4_loop>
- 262:	80 95       	com	r24
- 264:	90 95       	com	r25
- 266:	bc 01       	movw	r22, r24
- 268:	cd 01       	movw	r24, r26
- 26a:	08 95       	ret
+0000053e <__udivmodhi4_ep>:
+ 53e:	88 1f       	adc	r24, r24
+ 540:	99 1f       	adc	r25, r25
+ 542:	5a 95       	dec	r21
+ 544:	a9 f7       	brne	.-22     	; 0x530 <__udivmodhi4_loop>
+ 546:	80 95       	com	r24
+ 548:	90 95       	com	r25
+ 54a:	bc 01       	movw	r22, r24
+ 54c:	cd 01       	movw	r24, r26
+ 54e:	08 95       	ret
 
-0000026c <_exit>:
- 26c:	f8 94       	cli
+00000550 <strcpy_P>:
+ 550:	fb 01       	movw	r30, r22
+ 552:	dc 01       	movw	r26, r24
+ 554:	05 90       	lpm	r0, Z+
+ 556:	0d 92       	st	X+, r0
+ 558:	00 20       	and	r0, r0
+ 55a:	e1 f7       	brne	.-8      	; 0x554 <strcpy_P+0x4>
+ 55c:	08 95       	ret
 
-0000026e <__stop_program>:
- 26e:	ff cf       	rjmp	.-2      	; 0x26e <__stop_program>
+0000055e <itoa>:
+ 55e:	fb 01       	movw	r30, r22
+ 560:	9f 01       	movw	r18, r30
+ 562:	e8 94       	clt
+ 564:	42 30       	cpi	r20, 0x02	; 2
+ 566:	c4 f0       	brlt	.+48     	; 0x598 <itoa+0x3a>
+ 568:	45 32       	cpi	r20, 0x25	; 37
+ 56a:	b4 f4       	brge	.+44     	; 0x598 <itoa+0x3a>
+ 56c:	4a 30       	cpi	r20, 0x0A	; 10
+ 56e:	29 f4       	brne	.+10     	; 0x57a <itoa+0x1c>
+ 570:	97 fb       	bst	r25, 7
+ 572:	1e f4       	brtc	.+6      	; 0x57a <itoa+0x1c>
+ 574:	90 95       	com	r25
+ 576:	81 95       	neg	r24
+ 578:	9f 4f       	sbci	r25, 0xFF	; 255
+ 57a:	64 2f       	mov	r22, r20
+ 57c:	77 27       	eor	r23, r23
+ 57e:	0e 94 94 02 	call	0x528	; 0x528 <__udivmodhi4>
+ 582:	80 5d       	subi	r24, 0xD0	; 208
+ 584:	8a 33       	cpi	r24, 0x3A	; 58
+ 586:	0c f0       	brlt	.+2      	; 0x58a <itoa+0x2c>
+ 588:	89 5d       	subi	r24, 0xD9	; 217
+ 58a:	81 93       	st	Z+, r24
+ 58c:	cb 01       	movw	r24, r22
+ 58e:	00 97       	sbiw	r24, 0x00	; 0
+ 590:	a1 f7       	brne	.-24     	; 0x57a <itoa+0x1c>
+ 592:	16 f4       	brtc	.+4      	; 0x598 <itoa+0x3a>
+ 594:	5d e2       	ldi	r21, 0x2D	; 45
+ 596:	51 93       	st	Z+, r21
+ 598:	10 82       	st	Z, r1
+ 59a:	c9 01       	movw	r24, r18
+ 59c:	0c 94 d0 02 	jmp	0x5a0	; 0x5a0 <strrev>
+
+000005a0 <strrev>:
+ 5a0:	dc 01       	movw	r26, r24
+ 5a2:	fc 01       	movw	r30, r24
+ 5a4:	67 2f       	mov	r22, r23
+ 5a6:	71 91       	ld	r23, Z+
+ 5a8:	77 23       	and	r23, r23
+ 5aa:	e1 f7       	brne	.-8      	; 0x5a4 <strrev+0x4>
+ 5ac:	32 97       	sbiw	r30, 0x02	; 2
+ 5ae:	04 c0       	rjmp	.+8      	; 0x5b8 <strrev+0x18>
+ 5b0:	7c 91       	ld	r23, X
+ 5b2:	6d 93       	st	X+, r22
+ 5b4:	70 83       	st	Z, r23
+ 5b6:	62 91       	ld	r22, -Z
+ 5b8:	ae 17       	cp	r26, r30
+ 5ba:	bf 07       	cpc	r27, r31
+ 5bc:	c8 f3       	brcs	.-14     	; 0x5b0 <strrev+0x10>
+ 5be:	08 95       	ret
+
+000005c0 <_exit>:
+ 5c0:	f8 94       	cli
+
+000005c2 <__stop_program>:
+ 5c2:	ff cf       	rjmp	.-2      	; 0x5c2 <__stop_program>

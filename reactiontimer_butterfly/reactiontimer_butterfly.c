@@ -11,20 +11,25 @@
 #define F_CPU 2000000
 #define MAX_COUNT ((F_CPU)/ 1024 - 1) // the value that TCNT1 that leads to a 1s delay
 
+#include <stdlib.h>
 #include <avr/io.h>
 #include <avr/iom169p.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
 #include "LCDdriver.h"
+#include "LCDdriver.c"
 
 unsigned char game_start = 0; // 0: game inactive, 1: game started but timer hasn't, 2: game and timer both started
 unsigned char game_buttonpressed = 0; // 0: user didn't press the button, or invalid press; 1: user pressed the button
 unsigned int game_lastscore = 0;
+char score[3];
 
 int main(void)
 {	
 	// no interrupts
 	cli();
+	
+	LCD_Init();
 		
 	// use PINB1 and PINB0 as input to check if pressed
 	DDRB &= ~(1<< PINB0) | (1 << PINB1);
@@ -86,7 +91,8 @@ int main(void)
 			sei();
 		}
 		
-		// display lcd here
+		itoa(game_lastscore, score, 10);		
+		LCD_puts(score);	
 		
     }
 }

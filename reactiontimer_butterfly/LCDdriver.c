@@ -18,7 +18,7 @@
 */
 
 #define INC_FROM_DRIVER
-#include "LCD_Driver.h"
+#include "LCDdriver.h"
 
 //                                  LCD Text            + Nulls for scrolling + Null Termination
 static volatile char     TextBuffer[LCD_TEXTBUFFER_SIZE + LCD_DISPLAY_SIZE    + 1] = {};
@@ -267,7 +267,7 @@ ISR(LCD_vect, ISR_NOBLOCK)
  ARGUMENTS: | Character to display, LCD character number to display character on
  RETURNS:   | None
 */
-static inline void LCD_WriteChar(const uint8_t Byte, const uint8_t Digit)
+inline void LCD_WriteChar(const uint8_t Byte, const uint8_t Digit)
 {
    uint8_t* BuffPtr = (uint8_t*)(LCD_LCDREGS_START + (Digit >> 1));
    uint16_t SegData = 0x0000;
