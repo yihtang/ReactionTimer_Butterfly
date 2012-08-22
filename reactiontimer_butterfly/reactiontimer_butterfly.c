@@ -24,6 +24,8 @@ unsigned char game_buttonpressed = 0; // 0: user didn't press the button, or inv
 unsigned int game_lastscore = 0;
 char score[8];
 
+void checkPORTB();
+
 int main(void)
 {	
 	// no interrupts
@@ -46,6 +48,7 @@ int main(void)
 	
     while(1)
     {
+		checkPORTB();
         if (game_start == 0)
 		{
 			game_buttonpressed = 0;
@@ -96,11 +99,9 @@ int main(void)
 }
 
 // interrupt service routine for PB0-PB7, corresponding to PCINT8-PCINT15 interrupt enabler
-ISR(PCINT1_vect)
+void checkPORTB()
 {	
-	// disable future interrupts to prevent conflicts
-	cli();
-	LCD_puts("int vect");
+	
 	unsigned char PORTBINFO = PORTB;
 	
 	// if PB0 input is low (RESET is pressed)
@@ -118,14 +119,10 @@ ISR(PCINT1_vect)
 		else
 			game_buttonpressed = 0;	
 	}
-	
-	// re-enable interrupts to resume detecting for them
-	sei();	
 }
 
 ISR(TIMER1_COMPA_vect)
 {
-	cli();	
 	game_start = 2; // remain at state 2, indicating end of game, wait user to press RESET to make game_start = 0
 	game_buttonpressed = 0;
 	game_lastscore = 999;
@@ -135,5 +132,4 @@ ISR(TIMER1_COMPA_vect)
 	TIMSK1 &= ~(1<<OCIE1A);
 	PCMSK1 &= ~(1<<PCINT10);
 		
-	sei();
 }
