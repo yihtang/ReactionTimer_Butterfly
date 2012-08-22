@@ -49,7 +49,7 @@ int main(void)
 	
     while(1)
     {
-		checkPORTB();
+		
         if (game_start == 0)
 		{
 			game_buttonpressed = 0;
@@ -100,7 +100,7 @@ int main(void)
 }
 
 // interrupt service routine for PB0-PB7, corresponding to PCINT8-PCINT15 interrupt enabler
-void checkPORTB()
+ISR(PCINT1_vect)
 {	
 	
 	unsigned char PORTBINFO = PORTB;
