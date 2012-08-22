@@ -93,7 +93,7 @@ int main(void)
 		}
 		
 		
-		itoa(PORTB, score, 16);		
+		itoa(PINB, score, 16);		
 		LCD_puts(score);	
 		
     }
@@ -103,7 +103,7 @@ int main(void)
 ISR(PCINT1_vect)
 {	
 	
-	unsigned char PORTBINFO = PORTB;
+	unsigned char PORTBINFO = PINB;
 	
 	// if PB0 input is low (RESET is pressed)
 	if ((PORTBINFO & (1<<PINB1))){

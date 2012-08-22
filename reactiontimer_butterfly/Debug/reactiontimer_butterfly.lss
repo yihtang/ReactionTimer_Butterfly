@@ -691,7 +691,7 @@ int main(void)
 		}
 		
 		
-		itoa(PORTB, score, 16);		
+		itoa(PINB, score, 16);		
  3b6:	c5 e2       	ldi	r28, 0x25	; 37
  3b8:	d1 e0       	ldi	r29, 0x01	; 1
 	sei();
@@ -819,8 +819,8 @@ int main(void)
 		}
 		
 		
-		itoa(PORTB, score, 16);		
- 460:	85 b1       	in	r24, 0x05	; 5
+		itoa(PINB, score, 16);		
+ 460:	83 b1       	in	r24, 0x03	; 3
  462:	90 e0       	ldi	r25, 0x00	; 0
  464:	be 01       	movw	r22, r28
  466:	40 e1       	ldi	r20, 0x10	; 16
@@ -847,8 +847,8 @@ ISR(PCINT1_vect)
  480:	8f 93       	push	r24
  482:	9f 93       	push	r25
 	
-	unsigned char PORTBINFO = PORTB;
- 484:	85 b1       	in	r24, 0x05	; 5
+	unsigned char PORTBINFO = PINB;
+ 484:	83 b1       	in	r24, 0x03	; 3
 	
 	// if PB0 input is low (RESET is pressed)
 	if ((PORTBINFO & (1<<PINB1))){
