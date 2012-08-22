@@ -39,8 +39,7 @@ int main(void)
 	DDRB |= (1<<PINB5);
 	
 	//set up PINB0 to detect if game resets (restarts), all are high (5V) initially
-	PORTB &= ~(1<<PINB5);
-	PORTB |= 0xFF;
+	PORTB |= 0b11111111;
 	// enable external interrupts on PCINT8-PCINT15
 	EIMSK |= (1<<PCIE1);
 	EIFR |= (1<<PCIF1);
@@ -106,13 +105,13 @@ ISR(PCINT1_vect)
 	unsigned char PORTBINFO = PINB;
 	
 	// if PB0 input is low (RESET is pressed)
-	if (!(PORTBINFO & (1<<PINB1))){
+	if ((PORTBINFO & (1<<PINB1))){
 		game_start = 1;
 		//LCD_puts("PINB0 LOW");
 	}
 	
 	// if PB1 is low (user presses button after game started)
-	else if (!(PORTBINFO & (1<<PINB2))){
+	else if ((PORTBINFO & (1<<PINB2))){
 		//LCD_puts("PINB1 LOW");
 		// disable PINB1 button until game and timer have both started!
 		if (game_start == 2)
